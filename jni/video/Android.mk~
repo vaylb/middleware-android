@@ -1,0 +1,28 @@
+LOCAL_PATH := $(call my-dir)
+########################################
+# NCI Configuration
+########################################
+include $(CLEAR_VARS)
+
+OpenCV_INSTALL_MODULES:=on
+OPENCV_CAMERA_MODULES:=off
+OPENCV_LIB_TYPE:=STATIC
+ifeq ("$(wildcard $(OPENCV_MK_PATH))","")
+include /home/vaylb/android-src/android4.4/packages/apps/MiddleWare/jni/video/opencv/jni/OpenCV.mk
+else  
+include $(OPENCV_MK_PATH)  
+endif
+
+LOCAL_SRC_FILES := android_middleware_VideoHost.cpp
+
+LOCAL_PROGUARD_ENABLED := disabled
+
+LOCAL_CERTIFICATE := platform
+
+LOCAL_SHARED_LIBRARIES := \
+    libcutils libbinder libutils \
+    liblog libandroid_runtime \
+	libgui libvideoshare \
+
+LOCAL_MODULE := libvideo_host_middleware
+include $(BUILD_SHARED_LIBRARY)

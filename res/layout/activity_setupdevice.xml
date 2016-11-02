@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f0f0f0" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/linearlayout_style"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@string/setup_device"
+            android:textColor="#5f80d6"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/divider_line" />
+
+        <LinearLayout
+            android:id="@+id/scan_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layout5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/wifi"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/wifi" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scan_layout_txt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layout7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/inittext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/wifi"
+                    android:textColor="#5f80d6" />
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/divider_line" />
+        
+        <LinearLayout
+            android:id="@+id/audio_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+
+                <TextView  android:layout_height="30dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.0"
+                    android:text="局域网名称:"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="#5f80d6"/>
+                <EditText
+                    android:id="@+id/network_name"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="2.0"
+                    android:gravity="center"
+                    android:background="@drawable/linearlayout_style"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp">
+
+
+                <TextView  android:layout_height="30dp"
+                           android:layout_width="0dp"
+                           android:layout_weight="1.0"
+                           android:text="局域网密码:"
+                           android:gravity="center"
+                           android:textSize="18sp"
+                           android:textColor="#5f80d6"/>
+                <EditText
+                    android:id="@+id/network_psw"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="2.0"
+                    android:gravity="center"
+                    android:background="@drawable/linearlayout_style"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/setup"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="扫描设备"
+            android:textSize="18sp"
+            android:textColor="@color/playback_text_selector"
+            android:background="@drawable/playback_bg_selector"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/complete"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="配置完成"
+        android:textSize="18sp"
+        android:textColor="@color/playback_text_selector"
+        android:background="@drawable/playback_bg_selector"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        />
+
+
+
+</FrameLayout>

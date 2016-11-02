@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#f0f0f0">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/list_item_bg_press"
+        android:textColor="@color/list_item_textview_press"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+    <ListView
+        android:id="@+id/list_media"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:divider="#f0f0f0"
+        android:dividerHeight="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"/>
+
+    <ImageView
+        android:id="@+id/divide_line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/divider_line" />
+
+    <ListView
+        android:id="@+id/list_device"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:divider="#f0f0f0"
+        android:dividerHeight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"/>
+    
+    <Button
+        android:id="@+id/start_play"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="开始播放"
+        android:textSize="18sp"
+        android:textColor="@color/playback_text_selector"
+        android:background="@drawable/playback_bg_selector"
+        android:layout_margin="15dp"/>
+
+    <ListView
+        android:id="@+id/list_playback"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:divider="#f0f0f0"
+        android:dividerHeight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:visibility="gone"/>
+</LinearLayout>

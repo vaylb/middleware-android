@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">中间件系统</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="app_name1">中间件系统</string>
+    <string name="setup_device">配置新设备</string>
+    <string name="author">南京邮电大学项目组</string>
+    <string name="wifi">启用WIFI</string>
+    <string name="init">Init</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="scan">扫描设备</string>
+    <string name="setup">配置设备</string>
+    <string name="play_audio">音频播放</string>
+    <string name="play_audio_online">在线音频</string>
+    <string name="play_audio_thirdparty">音频截取</string>
+    <string name="play_video">视频播放</string>
+    <string name="play_video_online">在线视频</string>
+    <string name="play_video_thirdparty">视频截取</string>
+    <string name="play_screenrecord">屏幕截取</string>
+    <string name="device_list_text">设备列表</string>
+    <string name="playback_list_text">播放列表</string>
+
+
+</resources>

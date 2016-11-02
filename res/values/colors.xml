@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="list_item_textview_unpress">#0F0F0F</color>
+    <color name="list_item_textview_press">#EAEAEA</color>
+    <color name="list_item_bg_press">#525252</color>
+</resources>

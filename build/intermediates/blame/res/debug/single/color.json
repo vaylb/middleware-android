@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/color/playback_text_selector.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/color/playback_text_selector.xml"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/color/common_signin_btn_text_light.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/res/color/common_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/color/common_signin_btn_text_dark.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/res/color/common_signin_btn_text_dark.xml"
+    }
+]

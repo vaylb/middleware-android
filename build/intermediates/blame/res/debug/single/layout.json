@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/layout/activity_setupdevice.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/activity_setupdevice.xml"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/layout/activity_list.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/activity_list.xml"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/layout/playback_list_device_item.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/playback_list_device_item.xml"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/layout/playback_list_item.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/playback_list_item.xml"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/layout/device_list_item.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/device_list_item.xml"
+    }
+]
