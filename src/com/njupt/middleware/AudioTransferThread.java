@@ -51,12 +51,13 @@ public class AudioTransferThread implements Runnable {
     public void run() {
     	int size = 4096,read_tmp = 0;
     	byte data[] = new byte[size];
+        int count = 0;
     	
         try {
             if(serverSocket ==  null){
                 serverSocket = new ServerSocket(DEFAULT_PORT_TCP);
                 serverSocket.setReuseAddress(true);
-                serverSocket.setSoTimeout(50000);
+                serverSocket.setSoTimeout(500000);
             }
             
             while (TcpFlag) {
@@ -64,7 +65,7 @@ public class AudioTransferThread implements Runnable {
 					do{
 						Log.e(TAG, "TCP listen, current num "+socketsMap.size()+" total "+mTargetNum);
 						Socket socket = serverSocket.accept();
-						socket.setSoTimeout(50000);
+						socket.setSoTimeout(500000);
 						socketsMap.put(socket.getInetAddress().getHostAddress(),socket);
 					}while (socketsMap.size() < mTargetNum);
 					Log.d(TAG, "vaylb->Tcp listen, total audio device: "+ mTargetNum);
@@ -89,9 +90,11 @@ public class AudioTransferThread implements Runnable {
 	                    	outputStream.write(data);
 	                    	outputStream.flush();
 	            		}
-					}else TcpFlag = false;
+                        count+=read_tmp;
+					}
+                    //else TcpFlag = false;
 				}
-				Thread.sleep(2);
+				Thread.sleep(20);
             }
         }catch (SocketTimeoutException e) {
             e.printStackTrace();
@@ -103,15 +106,15 @@ public class AudioTransferThread implements Runnable {
             Log.d(TAG, "vaylb->tcp Exception");
             e.printStackTrace();
         } finally {
-            Log.d(TAG, "vaylb->Tcp thread end");
-            try {
-            	for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet())
-            		e.getValue().close();
-            	if (serverSocket != null) serverSocket.close();
-    		} catch (IOException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+            Log.d(TAG, "vaylb->Tcp thread end, send "+count+" byte");
+//            try {
+//            	for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet())
+//            		e.getValue().close();
+//            	if (serverSocket != null) serverSocket.close();
+//    		} catch (IOException e) {
+//    			// TODO Auto-generated catch block
+//    			e.printStackTrace();
+//    		}
             
         }
 
