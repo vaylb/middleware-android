@@ -52,6 +52,7 @@ public class AudioTransferThread implements Runnable {
     	int size = 4096,read_tmp = 0;
     	byte data[] = new byte[size];
         int count = 0;
+        int flash = 0;
     	
         try {
             if(serverSocket ==  null){
@@ -72,18 +73,6 @@ public class AudioTransferThread implements Runnable {
 					hasConnect = true;
 				} else { 
 					DataOutputStream outputStream;
-//					if(!audio_params_send_flag){ //传递音频相关参数
-//						int channels= 2, frequency = 44100, perframebits = 16;
-//	                    for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
-//	                    	outputStream = new DataOutputStream(e.getValue().getOutputStream());
-//	                    	outputStream.write(BaseFunction.IntToByteArray(channels));
-//	                    	outputStream.write(BaseFunction.IntToByteArray(frequency));
-//	                    	outputStream.write(BaseFunction.IntToByteArray(perframebits));
-//	                    	outputStream.flush();
-//	            		}
-//	                    audio_params_send_flag = true;
-//					}
-					
 					if((read_tmp = stream_in.read(data)) > 0){
 						for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
 	                    	outputStream = new DataOutputStream(e.getValue().getOutputStream());
@@ -91,8 +80,15 @@ public class AudioTransferThread implements Runnable {
 	                    	outputStream.flush();
 	            		}
                         count+=read_tmp;
-					}
-                    //else TcpFlag = false;
+
+					} //else TcpFlag = false;
+                    else{
+                        for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
+                            outputStream = new DataOutputStream(e.getValue().getOutputStream());
+                            outputStream.writeInt(flash);
+                            outputStream.flush();
+                        }
+                    }
 				}
 				Thread.sleep(20);
             }

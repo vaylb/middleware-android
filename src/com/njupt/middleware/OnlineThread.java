@@ -28,16 +28,17 @@ public class OnlineThread implements Runnable {
     public volatile boolean TcpFlag = true;
     private volatile boolean hasConnect = false;
     private int mCurrentPort = -1;
-
+    private int mTargetNum = -1;
     private ServerSocket serverSocket = null;
     private ConcurrentHashMap<String, Socket> socketsMap = null;
 
 
-    public OnlineThread(DeviceManager dm, String url, int port) {
+    public OnlineThread(DeviceManager dm, String url, int port,final int targetNum) {
         this.mDeviceManager = dm;
         this.mDataUrl = url;
         this.mCurrentPort = port;
         this.socketsMap = new ConcurrentHashMap<String, Socket>();
+        mTargetNum = targetNum;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class OnlineThread implements Runnable {
 						Socket socket = serverSocket.accept();
 						socket.setSoTimeout(500000);
 						socketsMap.put(socket.getInetAddress().getHostAddress(),socket);
-					}while (socketsMap.size() < mDeviceManager.getAudioDeviceNum());
+					}while (socketsMap.size() < mTargetNum);
 					Log.d(TAG, "vaylb->Tcp listen, total audio device: "+ mDeviceManager.getAudioDeviceNum());
 					hasConnect = true;
                     URL url=new URL(mDataUrl);

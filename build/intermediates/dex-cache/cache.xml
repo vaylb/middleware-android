@@ -2,25 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="24.0.0 rc4"
-        sha1="04725961d3912386d6f059bf2853a2daa6be8ef2">
-        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ce09a4857dd4e84f20ca420e24b5262e32242b59/classes.dex" />
-    </item>
-    <item
         jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.0 rc4"
         sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
         <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-22.2.0_eaedd91c6c57b442afade55f11eef4cacf8c11c4/classes.dex" />
-    </item>
-    <item
-        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="24.0.0 rc4"
-        sha1="bed3b9070ddcb8c05f5036d19ba5b1a646de98a8">
-        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_287a2967e8e7584706d9923788eeffbd91c366b2/classes.dex" />
     </item>
     <item
         jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
@@ -49,6 +35,20 @@
         revision="24.0.0 rc4"
         sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
         <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.2.0_812dd1f225cd109b4a3802c22147061cf253ea03/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="a9ad4795aa94861037e37de7ac8047ee9f91f8a6">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ce09a4857dd4e84f20ca420e24b5262e32242b59/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="9d03c6f206854f9d578c1fc455b59c01a5050887">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_287a2967e8e7584706d9923788eeffbd91c366b2/classes.dex" />
     </item>
     <item
         jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"

@@ -26,8 +26,16 @@ import com.njupt.middleware.media.Song;
 import com.njupt.middleware.media.VideoUtils;
 import com.njupt.middleware.struct.Device;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,8 +53,9 @@ public class ListActivity extends Activity {
     private static final int SHOW_MODE_MEDIA_SINGLE = 0x04;
     private static final int SHOW_MODE_MULTI = 0x05;
 
+    private static List<Media> transferList ; //中转list
     private Handler mHandler;
-    private boolean mShowDeviceList, mShowMediaList, mShowPlaybackList;
+    private boolean mShowDeviceList, mShowMediaList, mShowPlaybackList, mOnlineFlag;
     private ListView mDeviceListview, mMediaListview, mPlaybackListview;
     private TextView mTitle;
     private Button mStartplayBtn;
@@ -57,7 +66,7 @@ public class ListActivity extends Activity {
     private MyListAdapter mDeviceMyListAdapter, mMediaMyListAdapter;
     private PlaybackListAdapter mPlaybackAdapter;
     private DeviceManager mDeviceManager;
-
+    private static String urlString ; //访问网络端口服务器地址
     private int mCurrentSelectMediaPosition = -1;
     private Map<Integer, Device> mCurrentSelectDevice = new HashMap<Integer, Device>();
     private int mCurrentMediaType = -1;
@@ -139,13 +148,30 @@ public class ListActivity extends Activity {
 
         if (mShowMediaList) {
             if(mCurrentMediaType == Media.TYPE_MEDIA_AUDIO){
-                mMediaData = getNotPlaybackMedia(AudioUtils.getAllSongs(this));
+                if(mOnlineFlag){
+                    mMediaData = getNotPlayback_onLine_Media("mp3");
+//                    while(transferFlag==true);
+//                    while(transferFlag==false);
+                    Log.e("online-media",mMediaData.toString());
+
+                }else{
+                    mMediaData = getNotPlaybackMedia(AudioUtils.getAllSongs(this));
+                    Log.e("local-media",mMediaData.toString());
+                }
+
             }else if(mCurrentMediaType == Media.TYPE_MEDIA_VIDEO){
-                mMediaData = VideoUtils.getAllMovies(this);
+                if(mOnlineFlag){
+                    mMediaData = getNotPlayback_onLine_Media("mp4");
+                }else{
+                    mMediaData = VideoUtils.getAllMovies(this);
+                }
+
             }
 
             mMediaMyListAdapter = new MyListAdapter(this, TYPE_MEDIA);
+            mMediaMyListAdapter.notifyDataSetChanged();
             mMediaListview.setAdapter(mMediaMyListAdapter);
+
             mMediaListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -193,7 +219,90 @@ public class ListActivity extends Activity {
         }
         return res;
     }
+// 明天补充在线播放，获取在线音乐
+    public List<Media> getNotPlayback_onLine_Media(String type){
+        transferList = new ArrayList<Media>();
+        urlString ="http://182.254.211.166:8080/Middleware/medialist?type="+type;
+        final String Type = type ;
+        new Thread(new Runnable() {
 
+            @Override
+            public void run() {
+
+                try {
+                    URL url = new URL(urlString);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setConnectTimeout(2000);
+                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        Log.e("恭喜","网络连接成功");
+                        InputStream in = conn.getInputStream();
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8")); // 实例化输入流，并获取网页代码
+                        String s; // 依次循环，至到读的值为空
+                        StringBuilder sb = new StringBuilder();
+                        while ((s = reader.readLine()) != null) {
+                            sb.append(s);
+                        }
+                        reader.close();
+                        String str = sb.toString();
+                        in.close();
+                        transferList=getmMediaDataFromJson(str,Type);
+
+                        Message message = new Message();
+                        message.what = 2;
+                        message.obj = transferList;
+                        mDeviceManager.mHandler.sendMessage(message);
+
+                        Log.e("返回的str",str);
+                        Log.e("返回的transferList",transferList.toString());
+                    }
+                    else{
+                        Log.e("网络连接失败","");
+                    }
+                } catch (Exception e) {
+                    //showDialog(e.getMessage());
+                }
+            }
+        }).start();
+
+
+        return transferList;
+    }
+    // 将json 数组转化成字符串
+
+    /**
+     *
+     * @param str 服务器返回json字符串
+     * @param type 返回的类型 MP3，MP4
+     * @return
+     */
+    public List<Media> getmMediaDataFromJson(String str,String type) throws JSONException {
+
+        List<Media> res = new ArrayList<Media>();
+        JSONArray list = new JSONArray(str);
+
+//        Gson gson = new Gson();
+//        List<String> list = gson.fromJson(str,new TypeToken<List<String>>(){}.getType());
+        for(int i=0;i<list.length();i++){
+            try{
+                if(type.equals("mp3")){
+                    Song  song = new Song(0x02);
+                    list.get(i);
+                    song.setFileName(list.getString(i));
+                    res.add(song);
+                }
+                if(type.equals("mp4")){
+                    Movie  movie = new Movie(0x03);
+                    movie.setFileName(list.getString(i));
+                    res.add(movie);
+                }
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+        }
+
+
+        return res;
+    }
     public List<Media> getNotPlaybackMedia(List<Media> allmedia){
         List<Media> res = new ArrayList<Media>();
 
@@ -226,6 +335,7 @@ public class ListActivity extends Activity {
         Intent intent = getIntent();
         mShowDeviceList = intent.getBooleanExtra("SHOW_DEVICE_LIST", false);
         mShowMediaList = intent.getBooleanExtra("SHOW_MEDIA_LIST", false);
+        mOnlineFlag = intent.getBooleanExtra("ON_LINE_PLAY",false);
         if(mShowMediaList){
             mCurrentMediaType = intent.getIntExtra("SHOW_MEDIA_TYPE",Media.TYPE_MEDIA_AUDIO);
         }
@@ -255,45 +365,87 @@ public class ListActivity extends Activity {
             playbackdevices.add(e.getValue());
         }
         mDeviceManager.currentPlaybackMap.put(media,playbackdevices);
-
         Toast.makeText(getApplicationContext(), "即将播放\n" + mMediaData.get(position).getFileName(), Toast.LENGTH_SHORT).show();
-        if(media.getMediaType() == Media.TYPE_MEDIA_AUDIO){
-            mDeviceManager.startAudioPlayBack(new File(((Song) media).getFileUrl()), devices.size());
-            new Thread() {
-                @Override
-                public void run() {
-                    super.run();
-                    try {
-                        sleep(500);
-                        mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_AUDIO, devices);
+        if(mOnlineFlag){
+            if(media.getMediaType() == Media.TYPE_MEDIA_AUDIO){
+                mDeviceManager.startAudioOnlinePlayBack(mMediaData.get(position).getFileName(),devices.size());
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            sleep(500);
+                            mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_AUDIO);
 
-                        Message message = new Message();
-                        message.what = 0;
-                        mDeviceManager.mHandler.sendMessage(message);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                            Message message = new Message();
+                            message.what = 0;
+                            mDeviceManager.mHandler.sendMessage(message);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-            }.start();
-        }else if(media.getMediaType() == Media.TYPE_MEDIA_VIDEO){
-            mDeviceManager.startVideoPlayBack(new File(((Movie)media).getPath()),devices.size());
-            new Thread() {
-                @Override
-                public void run() {
-                    super.run();
-                    try {
-                        sleep(500);
-                        mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO_COMPRESSED, devices);
+                }.start();
+            } else if(media.getMediaType() == Media.TYPE_MEDIA_VIDEO){
+                mDeviceManager.startVideoOnlinePlayBack(mMediaData.get(position).getFileName(),devices.size());
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            sleep(500);
+                            mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO);
 
-                        Message message = new Message();
-                        message.what = 0;
-                        mDeviceManager.mHandler.sendMessage(message);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                            Message message = new Message();
+                            message.what = 0;
+                            mDeviceManager.mHandler.sendMessage(message);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-            }.start();
+                }.start();
+            }
+            }
+        else{
+
+            if(media.getMediaType() == Media.TYPE_MEDIA_AUDIO){
+                mDeviceManager.startAudioPlayBack(new File(((Song) media).getFileUrl()), devices.size());
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            sleep(500);
+                            mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_AUDIO, devices);
+
+                            Message message = new Message();
+                            message.what = 0;
+                            mDeviceManager.mHandler.sendMessage(message);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
+            }else if(media.getMediaType() == Media.TYPE_MEDIA_VIDEO){
+                mDeviceManager.startVideoPlayBack(new File(((Movie)media).getPath()),devices.size());
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            sleep(500);
+                            mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO_COMPRESSED, devices);
+
+                            Message message = new Message();
+                            message.what = 0;
+                            mDeviceManager.mHandler.sendMessage(message);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
+            }
         }
+
 
     }
 
@@ -510,6 +662,10 @@ public class ListActivity extends Activity {
             ListActivity activity = mActivity.get();
             if (msg.what == 0) {
                 mActivity.get().finish();
+            }
+            else if (msg.what == 2) {
+                activity.mMediaData = (List<Media>) msg.obj;
+                activity.mMediaMyListAdapter.notifyDataSetChanged();
             }
         }
 

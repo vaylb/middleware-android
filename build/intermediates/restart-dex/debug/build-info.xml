@@ -4,26 +4,26 @@
     api-level="22"
     density="xxhdpi"
     format="7"
-    timestamp="26009113634887" >
+    timestamp="2783131233760" >
 
     <task
         name="javac"
-        duration="476" />
+        duration="2723" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="271" />
+        duration="502" />
     <task
         name="verifier"
-        duration="14" />
+        duration="20" />
 
     <artifact
         location="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/outputs/apk/MiddleWare-debug.apk"
         type="MAIN" />
 
-    <build timestamp="26009113634887" >
+    <build timestamp="2783131233760" >
         <artifact
             location="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/outputs/apk/MiddleWare-debug.apk"
             type="MAIN" />

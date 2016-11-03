@@ -102,15 +102,31 @@ public class MainActivity extends Activity implements OnTouchListener {
 				startActivity(intent);
 			}
 			break;
+			case R.id.play_audio_online:
 
-		case R.id.play_audio_online:
+//			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//				playAudioOnlineBtn.setBackgroundResource(R.drawable.play_onine_press);
+//				mDeviceManager.startAudioOnlinePlayBack();
+//			} else if (event.getAction() == MotionEvent.ACTION_UP) {
+//				playAudioOnlineBtn.setBackgroundResource(R.drawable.play_onine);
+//				mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_AUDIO);
+//				Toast.makeText(this,"online",Toast.LENGTH_SHORT).show();
+//
+//
+//
+//			}
+
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
 				playAudioOnlineBtn.setBackgroundResource(R.drawable.play_onine_press);
-				mDeviceManager.startAudioOnlinePlayBack();
 			} else if (event.getAction() == MotionEvent.ACTION_UP) {
 				playAudioOnlineBtn.setBackgroundResource(R.drawable.play_onine);
-				mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_AUDIO);
-				Toast.makeText(this,"online",Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(MainActivity.this,ListActivity.class);
+				intent.putExtra("SHOW_MEDIA_LIST",true);
+				intent.putExtra("SHOW_MEDIA_TYPE", Media.TYPE_MEDIA_AUDIO);
+				intent.putExtra("SHOW_DEVICE_LIST",true);
+				intent.putExtra("ON_LINE_PLAY",true);
+				intent.putExtra("TITLE_STRING","选取音乐和设备");
+				startActivity(intent);
 			}
 			break;
 		case R.id.play_audio_thirdparty:
@@ -148,13 +164,29 @@ public class MainActivity extends Activity implements OnTouchListener {
 			break;
 
 		case R.id.play_video_online:
+//			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//				playVideoOnlineBtn.setBackgroundResource(R.drawable.play_video_online_press);
+//				mDeviceManager.startVideoOnlinePlayBack();
+//			} else if (event.getAction() == MotionEvent.ACTION_UP) {
+//				playVideoOnlineBtn.setBackgroundResource(R.drawable.play_video_online);
+//				mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO_COMPRESSED);
+//				Toast.makeText(this,"在线视频",Toast.LENGTH_SHORT).show();
+//			}
+//			break;
+			
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
 				playVideoOnlineBtn.setBackgroundResource(R.drawable.play_video_online_press);
-				mDeviceManager.startVideoOnlinePlayBack();
 			} else if (event.getAction() == MotionEvent.ACTION_UP) {
 				playVideoOnlineBtn.setBackgroundResource(R.drawable.play_video_online);
-				mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO_COMPRESSED);
-				Toast.makeText(this,"在线视频",Toast.LENGTH_SHORT).show();
+				//mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO_COMPRESSED);
+				//Toast.makeText(this,"在线视频",Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(MainActivity.this,ListActivity.class);
+				intent.putExtra("SHOW_MEDIA_LIST",true);
+				intent.putExtra("SHOW_MEDIA_TYPE", Media.TYPE_MEDIA_VIDEO);
+				intent.putExtra("SHOW_DEVICE_LIST",true);
+				intent.putExtra("ON_LINE_PLAY",true);
+				intent.putExtra("TITLE_STRING","选取视频和设备");
+				startActivity(intent);
 			}
 			break;
 

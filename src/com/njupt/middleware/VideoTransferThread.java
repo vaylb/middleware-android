@@ -54,6 +54,7 @@ public class VideoTransferThread implements Runnable {
     public void run() {
     	int size = 4096*2;
     	byte data[] = new byte[size];
+        int flash = 0;
     	
         try {
             if(serverSocket ==  null) {
@@ -81,7 +82,14 @@ public class VideoTransferThread implements Runnable {
 	                    	outputStream.write(data);
 	                    	outputStream.flush();
 	            		}
-					}else TcpFlag = false;
+					}//else TcpFlag = false;
+                    else{
+                        for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
+                            outputStream = new DataOutputStream(e.getValue().getOutputStream());
+                            outputStream.writeInt(flash);
+                            outputStream.flush();
+                        }
+                    }
 				}
 				Thread.sleep(2);
             }
