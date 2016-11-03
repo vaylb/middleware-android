@@ -393,7 +393,7 @@ public class ListActivity extends Activity {
                         super.run();
                         try {
                             sleep(500);
-                            mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO);
+                            mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO_COMPRESSED);
 
                             Message message = new Message();
                             message.what = 0;

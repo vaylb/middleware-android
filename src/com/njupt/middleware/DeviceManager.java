@@ -207,7 +207,7 @@ public class DeviceManager {
     }
 
     public void startVideoOnlinePlayBack(String movieName,int num){
-        OnlineThread videoOnline = new OnlineThread(this,"http://192.168.43.247:8080/"+movieName, OnlineThread.DEFAULT_VIDEO_PORT,num);
+        OnlineThread videoOnline = new OnlineThread(this,"http://182.254.211.166:8080/"+movieName, OnlineThread.DEFAULT_VIDEO_PORT,num);
         if(executor!=null)executor.execute(videoOnline);
     }
 
