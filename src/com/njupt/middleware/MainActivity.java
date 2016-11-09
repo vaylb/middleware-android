@@ -2,6 +2,7 @@ package com.njupt.middleware;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,11 +15,11 @@ import android.widget.Toast;
 
 import com.njupt.middleware.media.Media;
 
-import java.lang.ref.WeakReference;
 
 public class MainActivity extends Activity implements OnTouchListener {
 	private Handler mHandler;
 	private DeviceManager mDeviceManager;
+	private static Context mContext;
 	private ImageButton scanBtn,setupBtn,deviceListBtn,playbackListBtn,playAudioBtn,playAudioOnlineBtn,playAudioThirdpartyBtn;
 	private ImageButton playVideoBtn,playVideoOnlineBtn,playVideoThirdpartyBtn,playScreenRecord;
 
@@ -26,8 +27,9 @@ public class MainActivity extends Activity implements OnTouchListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		mContext = getApplicationContext();
 		
-		mHandler = new MyViewHandler(this);
+		mHandler = new MyViewHandler();
 		mDeviceManager = new DeviceManager(getApplicationContext(), mHandler);
 		scanBtn = (ImageButton)findViewById(R.id.scan);
 		setupBtn = (ImageButton)findViewById(R.id.setup);
@@ -279,26 +281,21 @@ public class MainActivity extends Activity implements OnTouchListener {
 	}
 	
 	private static class MyViewHandler extends Handler {
-        private final WeakReference<MainActivity> mActivity;
-
-        public MyViewHandler(MainActivity activity) {
-            mActivity = new WeakReference<MainActivity>(activity);
-        }
 
         @Override
         public void handleMessage(Message msg) {
-            MainActivity activity = mActivity.get();
+//            MainActivity activity = mActivity.get();
             if (msg.what == 0) {
-                Toast.makeText(activity, "初始化完成",
+                Toast.makeText(mContext, "初始化完成",
                         Toast.LENGTH_SHORT).show();
             }
             else if (msg.what == 1) {
-                Toast.makeText(activity, "从机来电，设置静音",
+                Toast.makeText(mContext, "从机来电，设置静音",
                         Toast.LENGTH_SHORT).show();
             }
             else if (msg.what == 2) {
 
-                Toast.makeText(activity, "从机通话完成，音量恢复",
+                Toast.makeText(mContext, "从机通话完成，音量恢复",
                         Toast.LENGTH_SHORT).show();
             }
             else if (msg.what == 3) {
@@ -314,30 +311,30 @@ public class MainActivity extends Activity implements OnTouchListener {
 //				}
 
             } else if (msg.what == 5) {
-                Toast.makeText(activity, "抱歉，主机出现错误",
+                Toast.makeText(mContext, "抱歉，主机出现错误",
                         Toast.LENGTH_SHORT).show();
             } else if (msg.what == 6) {
-                Toast.makeText(activity, "从机出现错误，主机恢复单独播放",
+                Toast.makeText(mContext, "从机出现错误，主机恢复单独播放",
                         Toast.LENGTH_SHORT).show();
 //                activity.mhp.nativeStartPlay = false;
 //                activity.mhp.getWriteUdp.stop();
 //                activity.mhp.native_setstartflag(0);
             } else if (msg.what == 7) {
-                Toast.makeText(activity, "从机已经退出，恢复单独播放",
+                Toast.makeText(mContext, "从机已经退出，恢复单独播放",
                         Toast.LENGTH_SHORT).show();
 //                activity.mhp.nativeStartPlay = false;
 //                activity.mhp.getWriteUdp.stop();
 //                activity.mhp.native_setstartflag(0);
             }
             else if (msg.what == 8) {
-                Toast.makeText(activity, "Wifi热点被关闭，恢复单独播放",
+                Toast.makeText(mContext, "Wifi热点被关闭，恢复单独播放",
                         Toast.LENGTH_SHORT).show();
 //                activity.mhp.nativeStartPlay = false;
 //                activity.mhp.getWriteUdp.stop();
 //                activity.mhp.native_setstartflag(0);
             }
             else if (msg.what == 4) {
-                Toast.makeText(activity, "正在退出..",
+                Toast.makeText(mContext, "正在退出..",
                         Toast.LENGTH_SHORT).show();
                 new Thread() {
 
@@ -364,7 +361,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 
             }
             if (msg.what == 9) {
-            	Toast.makeText(activity, "从机"+msg.obj+"已加入",
+            	Toast.makeText(mContext, "从机"+msg.obj+"已加入",
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -381,4 +378,14 @@ public class MainActivity extends Activity implements OnTouchListener {
 		if(mDeviceManager.mScreenRecordStartFlag)mDeviceManager.stopScreenRecord();
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(mHandler == null){
+			mHandler = new MyViewHandler();
+		}
+		if(mDeviceManager == null){
+			mDeviceManager = new DeviceManager(this,mHandler);
+		}
+	}
 }
