@@ -118,7 +118,7 @@ public class ListActivity extends Activity {
                     mDeviceData = getNotPlaybackDevice(mDeviceManager.getDeviceList(Device.TYPE_VIDEO));
                 }
             }else{
-                mDeviceData = getNotPlaybackDevice(mDeviceManager.getDeviceList(-1));
+                mDeviceData = mDeviceManager.getDeviceList(-1);
             }
 
             mDeviceMyListAdapter = new MyListAdapter(this, TYPE_DEVICE);
