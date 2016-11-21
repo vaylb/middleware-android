@@ -4,8 +4,8 @@
         "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/play_onine_press.png"
     },
     {
-        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/common_full_open_on_phone.png",
-        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/res/drawable-xhdpi/common_full_open_on_phone.png"
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_11.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_11.png"
     },
     {
         "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/play_video_movie.png",
@@ -20,15 +20,63 @@
         "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/play_video_online_press.png"
     },
     {
-        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/play_onine.png",
-        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/play_onine.png"
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_6.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_6.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_3.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_3.png"
     },
     {
         "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/ic_launcher.png",
         "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/ic_launcher.png"
     },
     {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_9.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_9.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_10.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_10.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_2.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_2.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_5.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_5.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/common_full_open_on_phone.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/res/drawable-xhdpi/common_full_open_on_phone.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_8.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_8.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/play_onine.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/play_onine.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_12.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_12.png"
+    },
+    {
         "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/play_video_online.png",
         "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/play_video_online.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_1.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_1.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_4.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_4.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-xhdpi-v4/chrysanthemum_7.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-xhdpi/chrysanthemum_7.png"
     }
 ]

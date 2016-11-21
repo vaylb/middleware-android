@@ -1,0 +1,12 @@
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/R$drawable$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/R$layout$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/R$style$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/SetUpDeviceActivity$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/R$integer$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/android/tools/fd/runtime/AppPatchesLoaderImpl.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/R$id$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/ListActivity$2$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/R$styleable$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/R$string$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/ListActivity$3$override.class
+CHANGED,/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/njupt/middleware/MainActivity$override.class

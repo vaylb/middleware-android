@@ -107,10 +107,15 @@ public class DeviceManager {
      * 添加新连接的设备
      */
     public void addDevice(Device device) {
-    	if(!slaveDeviceMap.containsKey(device.address.getHostAddress())){
-    		this.slaveDeviceMap.put(device.address.getHostAddress(), device);
-    		Log.d(TAG, "vaylb-->addDevice:"+device.address.getHostAddress()+", total:"+this.slaveDeviceMap.size());
-    	}
+    	if(slaveDeviceMap.containsKey(device.address.getHostAddress())){
+            if(slaveDeviceMap.get(device.address.getHostAddress()).type != device.type){
+                slaveDeviceMap.remove(device.address.getHostAddress());
+                this.slaveDeviceMap.put(device.address.getHostAddress(), device);
+            }
+    	}else{
+            this.slaveDeviceMap.put(device.address.getHostAddress(), device);
+            Log.d(TAG, "vaylb-->addDevice:"+device.address.getHostAddress()+", total:"+this.slaveDeviceMap.size());
+        }
     }
     
     public int getAudioDeviceNum(){

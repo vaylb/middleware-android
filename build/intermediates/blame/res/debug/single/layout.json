@@ -20,6 +20,10 @@
         "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/activity_main.xml"
     },
     {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/layout/comm_progress_dialog.xml",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/comm_progress_dialog.xml"
+    },
+    {
         "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/layout/device_list_item.xml",
         "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/layout/device_list_item.xml"
     }

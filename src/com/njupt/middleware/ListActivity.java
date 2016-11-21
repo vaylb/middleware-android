@@ -3,7 +3,9 @@ package com.njupt.middleware;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -22,9 +24,11 @@ import android.widget.Toast;
 import com.njupt.middleware.media.AudioUtils;
 import com.njupt.middleware.media.Media;
 import com.njupt.middleware.media.Movie;
+import com.njupt.middleware.media.PrintFile;
 import com.njupt.middleware.media.Song;
 import com.njupt.middleware.media.VideoUtils;
 import com.njupt.middleware.struct.Device;
+import com.njupt.middleware.utils.CommProgressDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -150,13 +154,9 @@ public class ListActivity extends Activity {
             if(mCurrentMediaType == Media.TYPE_MEDIA_AUDIO){
                 if(mOnlineFlag){
                     mMediaData = getNotPlayback_onLine_Media("mp3");
-//                    while(transferFlag==true);
-//                    while(transferFlag==false);
-                    Log.e("online-media",mMediaData.toString());
 
                 }else{
                     mMediaData = getNotPlaybackMedia(AudioUtils.getAllSongs(this));
-                    Log.e("local-media",mMediaData.toString());
                 }
 
             }else if(mCurrentMediaType == Media.TYPE_MEDIA_VIDEO){
@@ -166,6 +166,8 @@ public class ListActivity extends Activity {
                     mMediaData = VideoUtils.getAllMovies(this);
                 }
 
+            }else if (mCurrentMediaType == Media.TYPE_MEDIA_PRINTERFILE){
+                getPrintFiles("pdf");
             }
 
             mMediaMyListAdapter = new MyListAdapter(this, TYPE_MEDIA);
@@ -267,21 +269,12 @@ public class ListActivity extends Activity {
 
         return transferList;
     }
-    // 将json 数组转化成字符串
 
-    /**
-     *
-     * @param str 服务器返回json字符串
-     * @param type 返回的类型 MP3，MP4
-     * @return
-     */
     public List<Media> getmMediaDataFromJson(String str,String type) throws JSONException {
 
         List<Media> res = new ArrayList<Media>();
         JSONArray list = new JSONArray(str);
 
-//        Gson gson = new Gson();
-//        List<String> list = gson.fromJson(str,new TypeToken<List<String>>(){}.getType());
         for(int i=0;i<list.length();i++){
             try{
                 if(type.equals("mp3")){
@@ -299,8 +292,6 @@ public class ListActivity extends Activity {
                 e.printStackTrace();
             }
         }
-
-
         return res;
     }
     public List<Media> getNotPlaybackMedia(List<Media> allmedia){
@@ -335,6 +326,7 @@ public class ListActivity extends Activity {
         Intent intent = getIntent();
         mShowDeviceList = intent.getBooleanExtra("SHOW_DEVICE_LIST", false);
         mShowMediaList = intent.getBooleanExtra("SHOW_MEDIA_LIST", false);
+
         mOnlineFlag = intent.getBooleanExtra("ON_LINE_PLAY",false);
         if(mShowMediaList){
             mCurrentMediaType = intent.getIntExtra("SHOW_MEDIA_TYPE",Media.TYPE_MEDIA_AUDIO);
@@ -445,10 +437,55 @@ public class ListActivity extends Activity {
                 }.start();
             }
         }
-
-
     }
 
+    //print file part
+    public void getPrintFiles(final String suffix){
+        new AsyncTask<Integer, Integer, String[]>()
+            {
+                private CommProgressDialog dialog;
+                protected void onPreExecute() {
+                    dialog = CommProgressDialog.createDialog(ListActivity.this, R.drawable.anim_white);
+                    dialog.setMessage("Loading...");
+                    dialog.show();
+                    super.onPreExecute();
+                }
+
+                protected String[] doInBackground(Integer... params) {
+                    if (!android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+                    }
+                    else {
+                        if (!suffix.equals("")) {
+                            getFiles(Environment.getExternalStorageDirectory(),suffix);
+                        }
+                    }
+                    return null;
+                }
+
+                protected void onPostExecute(String[] result) {
+                    dialog.dismiss();
+                    mMediaMyListAdapter.notifyDataSetChanged();
+                    super.onPostExecute(result);
+                }
+            }.execute(0);
+    }
+
+    private void getFiles(File filePath, String suffix)
+    {
+        File[] files = filePath.listFiles();
+        if (files != null) {
+            for (int i = 0; i < files.length; i++) {
+                if (files[i].isDirectory()) {
+                    getFiles(files[i],suffix);
+                } else {
+                    if (files[i].getName().toLowerCase().endsWith("." + suffix)) {
+                        PrintFile file = new PrintFile(files[i].getName(),files[i].getPath());
+                        mMediaData.add(file);
+                    }
+                }
+            }
+        }
+    }
 
     public class MyListAdapter extends BaseAdapter {
 
@@ -513,6 +550,8 @@ public class ListActivity extends Activity {
                     holder.info.setText("音乐");
                 } else if (mMediaData.get(position).getMediaType() == Media.TYPE_MEDIA_VIDEO) {
                     holder.info.setText("视频");
+                } else  if(mMediaData.get(position).getMediaType() == Media.TYPE_MEDIA_PRINTERFILE){
+                    holder.info.setText("文件");
                 }
             }
 

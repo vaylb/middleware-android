@@ -10,14 +10,7 @@
       android:paddingRight="8dp"
       android:descendantFocusability="blocksDescendants">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="设备名称"
-        android:id="@+id/name"
-        android:textSize="17sp"
-        android:textColor="@color/list_item_textview_unpress"
-        android:layout_alignParentLeft="true"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,5 +20,16 @@
         android:textSize="17sp"
         android:textColor="@color/list_item_textview_unpress"
         android:layout_alignParentRight="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设备名称"
+        android:id="@+id/name"
+        android:textSize="17sp"
+        android:textColor="@color/list_item_textview_unpress"
+        android:singleLine="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/type"
+        android:layout_marginRight="10dp"/>
 
 </RelativeLayout>

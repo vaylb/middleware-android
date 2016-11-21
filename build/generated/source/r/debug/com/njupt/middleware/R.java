@@ -61,38 +61,52 @@ containing a value of this type.
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int common_full_open_on_phone=0x7f020000;
-        public static final int common_ic_googleplayservices=0x7f020001;
-        public static final int divider_line=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int icon_1=0x7f020004;
-        public static final int init=0x7f020005;
-        public static final int init_press=0x7f020006;
-        public static final int linearlayout_style=0x7f020007;
-        public static final int linearlayout_style_pressed=0x7f020008;
-        public static final int list=0x7f020009;
-        public static final int list_press=0x7f02000a;
-        public static final int play=0x7f02000b;
-        public static final int play_onine=0x7f02000c;
-        public static final int play_onine_press=0x7f02000d;
-        public static final int play_press=0x7f02000e;
-        public static final int play_system=0x7f02000f;
-        public static final int play_system_press=0x7f020010;
-        public static final int play_video=0x7f020011;
-        public static final int play_video_movie=0x7f020012;
-        public static final int play_video_movie_press=0x7f020013;
-        public static final int play_video_online=0x7f020014;
-        public static final int play_video_online_press=0x7f020015;
-        public static final int play_video_press=0x7f020016;
-        public static final int play_video_system=0x7f020017;
-        public static final int play_video_system_press=0x7f020018;
-        public static final int playback=0x7f020019;
-        public static final int playback_bg_pressed=0x7f02001a;
-        public static final int playback_bg_selector=0x7f02001b;
-        public static final int playback_press=0x7f02001c;
-        public static final int wifi=0x7f02001d;
-        public static final int wifi2=0x7f02001e;
-        public static final int wifi_press=0x7f02001f;
+        public static final int anim_white=0x7f020000;
+        public static final int chrysanthemum_1=0x7f020001;
+        public static final int chrysanthemum_10=0x7f020002;
+        public static final int chrysanthemum_11=0x7f020003;
+        public static final int chrysanthemum_12=0x7f020004;
+        public static final int chrysanthemum_2=0x7f020005;
+        public static final int chrysanthemum_3=0x7f020006;
+        public static final int chrysanthemum_4=0x7f020007;
+        public static final int chrysanthemum_5=0x7f020008;
+        public static final int chrysanthemum_6=0x7f020009;
+        public static final int chrysanthemum_7=0x7f02000a;
+        public static final int chrysanthemum_8=0x7f02000b;
+        public static final int chrysanthemum_9=0x7f02000c;
+        public static final int common_full_open_on_phone=0x7f02000d;
+        public static final int common_ic_googleplayservices=0x7f02000e;
+        public static final int divider_line=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int icon_1=0x7f020011;
+        public static final int icon_loading=0x7f020012;
+        public static final int init=0x7f020013;
+        public static final int init_press=0x7f020014;
+        public static final int linearlayout_style=0x7f020015;
+        public static final int linearlayout_style_pressed=0x7f020016;
+        public static final int list=0x7f020017;
+        public static final int list_press=0x7f020018;
+        public static final int play=0x7f020019;
+        public static final int play_onine=0x7f02001a;
+        public static final int play_onine_press=0x7f02001b;
+        public static final int play_press=0x7f02001c;
+        public static final int play_system=0x7f02001d;
+        public static final int play_system_press=0x7f02001e;
+        public static final int play_video=0x7f02001f;
+        public static final int play_video_movie=0x7f020020;
+        public static final int play_video_movie_press=0x7f020021;
+        public static final int play_video_online=0x7f020022;
+        public static final int play_video_online_press=0x7f020023;
+        public static final int play_video_press=0x7f020024;
+        public static final int play_video_system=0x7f020025;
+        public static final int play_video_system_press=0x7f020026;
+        public static final int playback=0x7f020027;
+        public static final int playback_bg_pressed=0x7f020028;
+        public static final int playback_bg_selector=0x7f020029;
+        public static final int playback_press=0x7f02002a;
+        public static final int wifi=0x7f02002b;
+        public static final int wifi2=0x7f02002c;
+        public static final int wifi_press=0x7f02002d;
     }
     public static final class id {
         public static final int adjust_height=0x7f090000;
@@ -104,13 +118,14 @@ containing a value of this type.
         public static final int device_list_text=0x7f090014;
         public static final int divide_line=0x7f090005;
         public static final int inittext=0x7f090013;
+        public static final int iv_loading=0x7f09002b;
         public static final int layout5=0x7f09000b;
         public static final int layout7=0x7f090011;
         public static final int list_device=0x7f090006;
         public static final int list_media=0x7f090004;
         public static final int list_playback=0x7f090008;
-        public static final int media_name=0x7f09002d;
-        public static final int name=0x7f09002b;
+        public static final int media_name=0x7f09002f;
+        public static final int name=0x7f09002e;
         public static final int network_name=0x7f090028;
         public static final int network_psw=0x7f090029;
         public static final int none=0x7f090002;
@@ -138,7 +153,8 @@ containing a value of this type.
         public static final int start_play=0x7f090007;
         public static final int textView1=0x7f090009;
         public static final int title=0x7f090003;
-        public static final int type=0x7f09002c;
+        public static final int tv_loading_msg=0x7f09002c;
+        public static final int type=0x7f09002d;
         public static final int video_layout=0x7f09001e;
         public static final int wifi=0x7f090027;
     }
@@ -149,9 +165,10 @@ containing a value of this type.
         public static final int activity_list=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int activity_setupdevice=0x7f030002;
-        public static final int device_list_item=0x7f030003;
-        public static final int playback_list_device_item=0x7f030004;
-        public static final int playback_list_item=0x7f030005;
+        public static final int comm_progress_dialog=0x7f030003;
+        public static final int device_list_item=0x7f030004;
+        public static final int playback_list_device_item=0x7f030005;
+        public static final int playback_list_item=0x7f030006;
     }
     public static final class string {
         public static final int action_settings=0x7f04001e;
@@ -219,6 +236,8 @@ containing a value of this type.
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
+        public static final int CommProgressDialog=0x7f080002;
+        public static final int CustomDialog=0x7f080003;
     }
     public static final class styleable {
         /** Attributes that can be used with a LoadingImageView.

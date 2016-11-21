@@ -255,8 +255,10 @@ public class MainActivity extends Activity implements OnTouchListener {
 			} else if (event.getAction() == MotionEvent.ACTION_UP) {
 				deviceListBtn.setBackgroundResource(R.drawable.list);
 				Intent intent = new Intent(MainActivity.this,ListActivity.class);
-				intent.putExtra("SHOW_DEVICE_LIST",true);
-				intent.putExtra("TITLE_STRING","设备列表");
+//				intent.putExtra("SHOW_DEVICE_LIST",true);
+//				intent.putExtra("TITLE_STRING","设备列表");
+				intent.putExtra("SHOW_MEDIA_LIST",true);
+				intent.putExtra("SHOW_MEDIA_TYPE",Media.TYPE_MEDIA_PRINTERFILE);
 				startActivity(intent);
 			}
 			break;
