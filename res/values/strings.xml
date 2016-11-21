@@ -22,6 +22,7 @@
     <string name="play_screenrecord">屏幕截取</string>
     <string name="device_list_text">设备列表</string>
     <string name="playback_list_text">播放列表</string>
+    <string name="print_file">打印文件</string>
 
 
 </resources>

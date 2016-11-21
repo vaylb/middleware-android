@@ -22,6 +22,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 	private static Context mContext;
 	private ImageButton scanBtn,setupBtn,deviceListBtn,playbackListBtn,playAudioBtn,playAudioOnlineBtn,playAudioThirdpartyBtn;
 	private ImageButton playVideoBtn,playVideoOnlineBtn,playVideoThirdpartyBtn,playScreenRecord;
+	private ImageButton printFileBtn;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,10 @@ public class MainActivity extends Activity implements OnTouchListener {
 		playbackListBtn = (ImageButton)findViewById(R.id.playback_list);
 		deviceListBtn.setOnTouchListener(this);
 		playbackListBtn.setOnTouchListener(this);
+
+		//print file
+		printFileBtn = (ImageButton)findViewById(R.id.print_file);
+		printFileBtn.setOnTouchListener(this);
 	}
 
 	@Override
@@ -255,10 +260,8 @@ public class MainActivity extends Activity implements OnTouchListener {
 			} else if (event.getAction() == MotionEvent.ACTION_UP) {
 				deviceListBtn.setBackgroundResource(R.drawable.list);
 				Intent intent = new Intent(MainActivity.this,ListActivity.class);
-//				intent.putExtra("SHOW_DEVICE_LIST",true);
-//				intent.putExtra("TITLE_STRING","设备列表");
-				intent.putExtra("SHOW_MEDIA_LIST",true);
-				intent.putExtra("SHOW_MEDIA_TYPE",Media.TYPE_MEDIA_PRINTERFILE);
+				intent.putExtra("SHOW_DEVICE_LIST",true);
+				intent.putExtra("TITLE_STRING","设备列表");
 				startActivity(intent);
 			}
 			break;
@@ -271,6 +274,19 @@ public class MainActivity extends Activity implements OnTouchListener {
 				Intent intent = new Intent(MainActivity.this,ListActivity.class);
 				intent.putExtra("SHOW_PLAYBACK_LIST",true);
 				intent.putExtra("TITLE_STRING","播放列表");
+				startActivity(intent);
+			}
+			break;
+		case R.id.print_file:
+			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+				printFileBtn.setBackgroundResource(R.drawable.list_press);
+			} else if (event.getAction() == MotionEvent.ACTION_UP) {
+				printFileBtn.setBackgroundResource(R.drawable.list);
+				Intent intent = new Intent(MainActivity.this,ListActivity.class);
+				intent.putExtra("SHOW_DEVICE_LIST",true);
+				intent.putExtra("TITLE_STRING","选择文件和设备");
+				intent.putExtra("SHOW_MEDIA_LIST",true);
+				intent.putExtra("SHOW_MEDIA_TYPE",Media.TYPE_MEDIA_PRINTERFILE);
 				startActivity(intent);
 			}
 			break;

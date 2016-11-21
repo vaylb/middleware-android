@@ -52,7 +52,7 @@ public class DeviceManager {
 
     public List<Device> getDeviceList(int type){
         List<Device> list = new ArrayList<Device>();
-        if(type == Device.TYPE_AUDIO || type == Device.TYPE_AUDIO){
+        if(type == Device.TYPE_AUDIO || type == Device.TYPE_AUDIO || type == Device.TYPE_PRINTER){
             for(ConcurrentMap.Entry<String,Device> e: slaveDeviceMap.entrySet() ){
                 if(e.getValue().type == type)list.add(e.getValue());
             }

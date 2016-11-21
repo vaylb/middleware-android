@@ -5,7 +5,11 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 import org.apache.http.conn.util.InetAddressUtils;
+
+import android.content.Context;
 import android.util.Log;
+
+import com.njupt.middleware.utils.CommProgressDialog;
 
 public class BaseFunction {
 	private static String TAG = "BaseFunction"; 
@@ -67,6 +71,13 @@ public class BaseFunction {
         b[2] = (byte) (n >> 16 & 0xff);  
         b[3] = (byte) (n >> 24 & 0xff);  
         return b;  
+    }
+
+    public static CommProgressDialog showProgressDialog(Context context, String message){
+        CommProgressDialog dialog = CommProgressDialog.createDialog(context, R.drawable.anim_white);
+        dialog.setMessage(message);
+        dialog.show();
+        return dialog;
     }
 
 }

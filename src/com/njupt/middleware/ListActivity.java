@@ -65,7 +65,7 @@ public class ListActivity extends Activity {
     private Button mStartplayBtn;
     private ImageView mDivideLine;
     private String mTitleStr = "";
-    private List<Device> mDeviceData; //存储所有连接设备
+    private List<Device> mDeviceData = new ArrayList<Device>(); //存储所有连接设备
     private List<Media> mMediaData = new ArrayList<Media>(); //存储所有媒体信息
     private MyListAdapter mDeviceMyListAdapter, mMediaMyListAdapter;
     private PlaybackListAdapter mPlaybackAdapter;
@@ -120,6 +120,8 @@ public class ListActivity extends Activity {
                     mDeviceData = getNotPlaybackDevice(mDeviceManager.getDeviceList(Device.TYPE_AUDIO));
                 }else if(mCurrentMediaType == Media.TYPE_MEDIA_VIDEO){
                     mDeviceData = getNotPlaybackDevice(mDeviceManager.getDeviceList(Device.TYPE_VIDEO));
+                }else if(mCurrentMediaType == Media.TYPE_MEDIA_PRINTERFILE){
+                    mDeviceData = getNotPlaybackDevice(mDeviceManager.getDeviceList(Device.TYPE_PRINTER));
                 }
             }else{
                 mDeviceData = mDeviceManager.getDeviceList(-1);
@@ -443,11 +445,9 @@ public class ListActivity extends Activity {
     public void getPrintFiles(final String suffix){
         new AsyncTask<Integer, Integer, String[]>()
             {
-                private CommProgressDialog dialog;
+                private CommProgressDialog dialog = null;
                 protected void onPreExecute() {
-                    dialog = CommProgressDialog.createDialog(ListActivity.this, R.drawable.anim_white);
-                    dialog.setMessage("Loading...");
-                    dialog.show();
+                    dialog = BaseFunction.showProgressDialog(ListActivity.this, "正在扫描SD卡文件");
                     super.onPreExecute();
                 }
 
@@ -463,7 +463,9 @@ public class ListActivity extends Activity {
                 }
 
                 protected void onPostExecute(String[] result) {
-                    dialog.dismiss();
+                    if(dialog != null){
+                        dialog.dismiss();
+                    }
                     mMediaMyListAdapter.notifyDataSetChanged();
                     super.onPostExecute(result);
                 }

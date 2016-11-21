@@ -64,6 +64,7 @@
     <string name="play_video_online">在线视频</string>
     <string name="play_video_thirdparty">视频截取</string>
     <string name="playback_list_text">播放列表</string>
+    <string name="print_file">打印文件</string>
     <string name="scan">扫描设备</string>
     <string name="setup">配置设备</string>
     <string name="setup_device">配置新设备</string>

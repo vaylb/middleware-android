@@ -113,38 +113,42 @@ containing a value of this type.
         public static final int adjust_width=0x7f090001;
         public static final int audio_layout=0x7f090016;
         public static final int audio_layout_txt=0x7f09001a;
-        public static final int complete=0x7f09002a;
+        public static final int complete=0x7f09002f;
         public static final int device_list=0x7f09000e;
         public static final int device_list_text=0x7f090014;
         public static final int divide_line=0x7f090005;
         public static final int inittext=0x7f090013;
-        public static final int iv_loading=0x7f09002b;
+        public static final int iv_loading=0x7f090030;
         public static final int layout5=0x7f09000b;
         public static final int layout7=0x7f090011;
         public static final int list_device=0x7f090006;
         public static final int list_media=0x7f090004;
         public static final int list_playback=0x7f090008;
-        public static final int media_name=0x7f09002f;
-        public static final int name=0x7f09002e;
-        public static final int network_name=0x7f090028;
-        public static final int network_psw=0x7f090029;
+        public static final int media_name=0x7f090034;
+        public static final int name=0x7f090033;
+        public static final int network_name=0x7f09002d;
+        public static final int network_psw=0x7f09002e;
         public static final int none=0x7f090002;
         public static final int play_audio=0x7f090017;
         public static final int play_audio_online=0x7f090018;
         public static final int play_audio_thirdparty=0x7f090019;
         public static final int play_audio_thirdpartytext=0x7f09001d;
         public static final int play_screenrecord=0x7f090022;
-        public static final int play_screenrecordtext=0x7f090026;
+        public static final int play_screenrecordtext=0x7f090027;
         public static final int play_video=0x7f09001f;
         public static final int play_video_online=0x7f090020;
         public static final int play_video_thirdparty=0x7f090021;
-        public static final int play_video_thirdpartytext=0x7f090025;
+        public static final int play_video_thirdpartytext=0x7f090026;
         public static final int playback_list=0x7f09000f;
         public static final int playback_list_text=0x7f090015;
         public static final int playtext_audio=0x7f09001b;
         public static final int playtext_audio_online=0x7f09001c;
-        public static final int playtext_video=0x7f090023;
-        public static final int playtext_video_online=0x7f090024;
+        public static final int playtext_video=0x7f090024;
+        public static final int playtext_video_online=0x7f090025;
+        public static final int print_file=0x7f090029;
+        public static final int print_file_text=0x7f09002b;
+        public static final int print_layout=0x7f090028;
+        public static final int print_layout_txt=0x7f09002a;
         public static final int scan=0x7f09000d;
         public static final int scan_layout=0x7f09000a;
         public static final int scan_layout_txt=0x7f090010;
@@ -153,10 +157,11 @@ containing a value of this type.
         public static final int start_play=0x7f090007;
         public static final int textView1=0x7f090009;
         public static final int title=0x7f090003;
-        public static final int tv_loading_msg=0x7f09002c;
-        public static final int type=0x7f09002d;
+        public static final int tv_loading_msg=0x7f090031;
+        public static final int type=0x7f090032;
         public static final int video_layout=0x7f09001e;
-        public static final int wifi=0x7f090027;
+        public static final int video_layout_txt=0x7f090023;
+        public static final int wifi=0x7f09002c;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
@@ -218,12 +223,13 @@ containing a value of this type.
         public static final int play_video_online=0x7f04002c;
         public static final int play_video_thirdparty=0x7f04002d;
         public static final int playback_list_text=0x7f04002e;
-        public static final int scan=0x7f04002f;
-        public static final int setup=0x7f040030;
-        public static final int setup_device=0x7f040031;
-        public static final int start=0x7f040032;
-        public static final int stop=0x7f040033;
-        public static final int wifi=0x7f040034;
+        public static final int print_file=0x7f04002f;
+        public static final int scan=0x7f040030;
+        public static final int setup=0x7f040031;
+        public static final int setup_device=0x7f040032;
+        public static final int start=0x7f040033;
+        public static final int stop=0x7f040034;
+        public static final int wifi=0x7f040035;
     }
     public static final class style {
         /** 
