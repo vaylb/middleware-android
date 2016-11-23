@@ -92,12 +92,12 @@
         "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-hdpi/play_video_system_press.png"
     },
     {
-        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon_loading.png",
-        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-hdpi/icon_loading.png"
-    },
-    {
         "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-hdpi-v4/play_press.png",
         "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-hdpi/play_press.png"
+    },
+    {
+        "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon_loading.png",
+        "source": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/drawable-hdpi/icon_loading.png"
     },
     {
         "merged": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/res/merged/debug/drawable-hdpi-v4/play_system_press.png",

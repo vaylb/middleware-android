@@ -276,6 +276,12 @@ public class DeviceManager {
         native_screenrecord_stop();
     }
 
+    //file print
+    public void startPrintFile(File file,int num){
+        FileTransferThread filetransfer = new FileTransferThread(this,file,num);
+        if(executor!=null)executor.execute(filetransfer);
+    }
+
     // native函数
     //audio
     public native int native_setup(int receivebuffer, int sendbuffer);

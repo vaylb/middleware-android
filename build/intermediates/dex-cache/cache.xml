@@ -5,7 +5,7 @@
         jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="24.0.0 rc4"
-        sha1="671f11dace7e2dbfee42614f602a304a7344d08c">
+        sha1="c9594ea6bda68669f77146c401e188cc742ab42d">
         <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ce09a4857dd4e84f20ca420e24b5262e32242b59/classes.dex" />
     </item>
     <item
@@ -19,7 +19,7 @@
         jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="24.0.0 rc4"
-        sha1="1c4fdf9b3acdd9cb5cec624be9565ba023705b64">
+        sha1="889632bc734fe1a4ac22f0d2f03860684ac4e5b2">
         <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_287a2967e8e7584706d9923788eeffbd91c366b2/classes.dex" />
     </item>
     <item

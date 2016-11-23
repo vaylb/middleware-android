@@ -67,7 +67,7 @@ public class ListActivity extends Activity {
     private String mTitleStr = "";
     private List<Device> mDeviceData = new ArrayList<Device>(); //存储所有连接设备
     private List<Media> mMediaData = new ArrayList<Media>(); //存储所有媒体信息
-    private MyListAdapter mDeviceMyListAdapter, mMediaMyListAdapter;
+    private MyListAdapter mDeviceMyListAdapter, mMediaListAdapter;
     private PlaybackListAdapter mPlaybackAdapter;
     private DeviceManager mDeviceManager;
     private static String urlString ; //访问网络端口服务器地址
@@ -155,7 +155,7 @@ public class ListActivity extends Activity {
         if (mShowMediaList) {
             if(mCurrentMediaType == Media.TYPE_MEDIA_AUDIO){
                 if(mOnlineFlag){
-                    mMediaData = getNotPlayback_onLine_Media("mp3");
+                    mMediaData = getNotPlaybackMediaOnline("mp3");
 
                 }else{
                     mMediaData = getNotPlaybackMedia(AudioUtils.getAllSongs(this));
@@ -163,7 +163,7 @@ public class ListActivity extends Activity {
 
             }else if(mCurrentMediaType == Media.TYPE_MEDIA_VIDEO){
                 if(mOnlineFlag){
-                    mMediaData = getNotPlayback_onLine_Media("mp4");
+                    mMediaData = getNotPlaybackMediaOnline("mp4");
                 }else{
                     mMediaData = VideoUtils.getAllMovies(this);
                 }
@@ -172,9 +172,9 @@ public class ListActivity extends Activity {
                 getPrintFiles("pdf");
             }
 
-            mMediaMyListAdapter = new MyListAdapter(this, TYPE_MEDIA);
-            mMediaMyListAdapter.notifyDataSetChanged();
-            mMediaListview.setAdapter(mMediaMyListAdapter);
+            mMediaListAdapter = new MyListAdapter(this, TYPE_MEDIA);
+            mMediaListAdapter.notifyDataSetChanged();
+            mMediaListview.setAdapter(mMediaListAdapter);
 
             mMediaListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -223,22 +223,19 @@ public class ListActivity extends Activity {
         }
         return res;
     }
-// 明天补充在线播放，获取在线音乐
-    public List<Media> getNotPlayback_onLine_Media(String type){
+
+    public List<Media> getNotPlaybackMediaOnline(String type){
         transferList = new ArrayList<Media>();
         urlString ="http://182.254.211.166:8080/Middleware/medialist?type="+type;
         final String Type = type ;
         new Thread(new Runnable() {
-
             @Override
             public void run() {
-
                 try {
                     URL url = new URL(urlString);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setConnectTimeout(2000);
                     if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        Log.e("恭喜","网络连接成功");
                         InputStream in = conn.getInputStream();
                         BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8")); // 实例化输入流，并获取网页代码
                         String s; // 依次循环，至到读的值为空
@@ -249,15 +246,12 @@ public class ListActivity extends Activity {
                         reader.close();
                         String str = sb.toString();
                         in.close();
-                        transferList=getmMediaDataFromJson(str,Type);
+                        transferList= getMediaDataFromJson(str,Type);
 
                         Message message = new Message();
                         message.what = 2;
                         message.obj = transferList;
                         mDeviceManager.mHandler.sendMessage(message);
-
-                        Log.e("返回的str",str);
-                        Log.e("返回的transferList",transferList.toString());
                     }
                     else{
                         Log.e("网络连接失败","");
@@ -267,16 +261,12 @@ public class ListActivity extends Activity {
                 }
             }
         }).start();
-
-
         return transferList;
     }
 
-    public List<Media> getmMediaDataFromJson(String str,String type) throws JSONException {
-
+    public List<Media> getMediaDataFromJson(String str, String type) throws JSONException {
         List<Media> res = new ArrayList<Media>();
         JSONArray list = new JSONArray(str);
-
         for(int i=0;i<list.length();i++){
             try{
                 if(type.equals("mp3")){
@@ -359,7 +349,12 @@ public class ListActivity extends Activity {
             playbackdevices.add(e.getValue());
         }
         mDeviceManager.currentPlaybackMap.put(media,playbackdevices);
-        Toast.makeText(getApplicationContext(), "即将播放\n" + mMediaData.get(position).getFileName(), Toast.LENGTH_SHORT).show();
+        if(media.getMediaType() == Media.TYPE_MEDIA_PRINTERFILE){
+            Toast.makeText(getApplicationContext(), "即将打印\n" + mMediaData.get(position).getFileName(), Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "即将播放\n" + mMediaData.get(position).getFileName(), Toast.LENGTH_SHORT).show();
+        }
+
         if(mOnlineFlag){
             if(media.getMediaType() == Media.TYPE_MEDIA_AUDIO){
                 mDeviceManager.startAudioOnlinePlayBack(mMediaData.get(position).getFileName(),devices.size());
@@ -398,9 +393,7 @@ public class ListActivity extends Activity {
                     }
                 }.start();
             }
-            }
-        else{
-
+        }else{
             if(media.getMediaType() == Media.TYPE_MEDIA_AUDIO){
                 mDeviceManager.startAudioPlayBack(new File(((Song) media).getFileUrl()), devices.size());
                 new Thread() {
@@ -428,6 +421,24 @@ public class ListActivity extends Activity {
                         try {
                             sleep(500);
                             mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO_COMPRESSED, devices);
+
+                            Message message = new Message();
+                            message.what = 0;
+                            mDeviceManager.mHandler.sendMessage(message);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
+            }else if(media.getMediaType() == Media.TYPE_MEDIA_PRINTERFILE){
+                mDeviceManager.startPrintFile(new File(((PrintFile)media).getFilePath()),devices.size());
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            sleep(500);
+                            mDeviceManager.doDevicesPrepare(UdpOrder.DEVICE_PREPARE_FILE_PRINT, devices);
 
                             Message message = new Message();
                             message.what = 0;
@@ -466,7 +477,7 @@ public class ListActivity extends Activity {
                     if(dialog != null){
                         dialog.dismiss();
                     }
-                    mMediaMyListAdapter.notifyDataSetChanged();
+                    mMediaListAdapter.notifyDataSetChanged();
                     super.onPostExecute(result);
                 }
             }.execute(0);
@@ -545,6 +556,8 @@ public class ListActivity extends Activity {
                     holder.info.setText("音频设备");
                 } else if (mDeviceData.get(position).type == Device.TYPE_VIDEO) {
                     holder.info.setText("视频设备");
+                }else if(mDeviceData.get(position).type == Device.TYPE_PRINTER){
+                    holder.info.setText("打印设备");
                 }
             } else if (type == TYPE_MEDIA) {
                 holder.title.setText(mMediaData.get(position).getFileName());
@@ -706,7 +719,7 @@ public class ListActivity extends Activity {
             }
             else if (msg.what == 2) {
                 activity.mMediaData = (List<Media>) msg.obj;
-                activity.mMediaMyListAdapter.notifyDataSetChanged();
+                activity.mMediaListAdapter.notifyDataSetChanged();
             }
         }
 

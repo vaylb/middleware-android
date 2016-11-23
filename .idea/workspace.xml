@@ -27,8 +27,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1115a722-807a-47ea-9671-dbca45bf29f4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/njupt/middleware/FileTransferThread.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/blame/res/debug/multi/drawable-hdpi-v4.json" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/blame/res/debug/multi/drawable-xhdpi-v4.json" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/android/tools/fd/runtime/AppPatchesLoaderImpl.class" afterPath="" />
@@ -72,10 +71,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-19.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-19.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/BaseFunction.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/BaseFunction.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/DeviceManager.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/DeviceManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$4.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$5.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$6.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$6.class" />
@@ -90,26 +86,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$PlaybackListAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$PlaybackListAdapter$ViewHolder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$PlaybackListAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity$PlaybackListAdapter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/ListActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$MyViewHandler$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$MyViewHandler$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$MyViewHandler.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity$MyViewHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$id.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$integer.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$layout.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$string.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$style.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$styleable.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/SetUpDeviceActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/SetUpDeviceActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/utils/CommProgressDialog.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/utils/CommProgressDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/UdpOrder.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/UdpOrder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/VideoTransferThread.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/njupt/middleware/VideoTransferThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar" afterPath="$PROJECT_DIR$/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-runtime-classes/debug/instant-run.jar" afterPath="$PROJECT_DIR$/build/intermediates/incremental-runtime-classes/debug/instant-run.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/BaseFunction.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/BaseFunction.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/DeviceManager.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/DeviceManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$4.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$5.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$6.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$6.class" />
@@ -124,29 +105,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$PlaybackListAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$PlaybackListAdapter$ViewHolder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$PlaybackListAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity$PlaybackListAdapter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/ListActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$1.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$MyViewHandler$1.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$MyViewHandler$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$MyViewHandler.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity$MyViewHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$id.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$integer.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$layout.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$string.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$style.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$styleable.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/SetUpDeviceActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/SetUpDeviceActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/utils/CommProgressDialog.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/utils/CommProgressDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/UdpOrder.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/UdpOrder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/VideoTransferThread.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/njupt/middleware/VideoTransferThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/instant-run-support/debug/classes.zip" afterPath="$PROJECT_DIR$/build/intermediates/instant-run-support/debug/classes.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/instant-run-support/debug/resources.zip" afterPath="$PROJECT_DIR$/build/intermediates/instant-run-support/debug/resources.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/build/intermediates/res/resources-debug.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/BaseFunction.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/BaseFunction.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/DeviceManager.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/DeviceManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$4.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$5.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$6.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$6.class" />
@@ -161,25 +125,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$PlaybackListAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$PlaybackListAdapter$ViewHolder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$PlaybackListAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity$PlaybackListAdapter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/ListActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$MyViewHandler$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$MyViewHandler$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$MyViewHandler.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity$MyViewHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$id.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$integer.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$layout.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$string.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$style.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$styleable.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/SetUpDeviceActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/SetUpDeviceActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/utils/CommProgressDialog.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/utils/CommProgressDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_3/com/njupt/middleware/utils/CommProgressDialog.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_3/com/njupt/middleware/utils/CommProgressDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/BaseFunction.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/BaseFunction.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/UdpOrder.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/UdpOrder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/VideoTransferThread.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/njupt/middleware/VideoTransferThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/DeviceManager.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/DeviceManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$4.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$5.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$6.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$6.class" />
@@ -194,40 +142,19 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$PlaybackListAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$PlaybackListAdapter$ViewHolder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$PlaybackListAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity$PlaybackListAdapter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/ListActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$MyViewHandler$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$MyViewHandler$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$MyViewHandler.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity$MyViewHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$id.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$integer.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$layout.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$string.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$style.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$styleable.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/SetUpDeviceActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/SetUpDeviceActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/UdpOrder.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/UdpOrder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/VideoTransferThread.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/njupt/middleware/VideoTransferThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/outputs/apk/MiddleWare-debug-unaligned.apk" afterPath="$PROJECT_DIR$/build/outputs/apk/MiddleWare-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/outputs/apk/MiddleWare-debug.apk" afterPath="$PROJECT_DIR$/build/outputs/apk/MiddleWare-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/source/r/debug/com/njupt/middleware/R.java" afterPath="$PROJECT_DIR$/build/generated/source/r/debug/com/njupt/middleware/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/blame/res/debug/multi/values.json" afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/multi/values.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MiddleWare.iml" afterPath="$PROJECT_DIR$/MiddleWare.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/layout.json" afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/layout.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/instant-run-support/debug/reload-changes.txt" afterPath="$PROJECT_DIR$/build/intermediates/instant-run-support/debug/reload-changes.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/activity_main.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/values/values.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/restart-dex/debug/build-info.xml" afterPath="$PROJECT_DIR$/build/intermediates/restart-dex/debug/build-info.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/njupt/middleware/BaseFunction.java" afterPath="$PROJECT_DIR$/src/com/njupt/middleware/BaseFunction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/njupt/middleware/DeviceManager.java" afterPath="$PROJECT_DIR$/src/com/njupt/middleware/DeviceManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/njupt/middleware/ListActivity.java" afterPath="$PROJECT_DIR$/src/com/njupt/middleware/ListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/njupt/middleware/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/njupt/middleware/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/njupt/middleware/UdpOrder.java" afterPath="$PROJECT_DIR$/src/com/njupt/middleware/UdpOrder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/njupt/middleware/VideoTransferThread.java" afterPath="$PROJECT_DIR$/src/com/njupt/middleware/VideoTransferThread.java" />
     </list>
     <ignored path="MiddleWare.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -255,11 +182,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/MainActivity.java">
+      <file leaf-file-name="DeviceManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/DeviceManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="285" column="57" selection-start-line="285" selection-start-column="57" selection-end-line="285" selection-end-column="57" />
+              <caret line="279" column="50" selection-start-line="279" selection-start-column="50" selection-end-line="279" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#904#925#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileTransferThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/FileTransferThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="71" column="57" selection-start-line="71" selection-start-column="57" selection-end-line="71" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -267,14 +207,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeviceManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/DeviceManager.java">
+      <file leaf-file-name="UdpOrder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/UdpOrder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AudioTransferThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/AudioTransferThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AudioThirdPartyThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/AudioThirdPartyThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -282,61 +240,30 @@
       <file leaf-file-name="ListActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/ListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3782696">
-              <caret line="117" column="31" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.7628459">
+              <caret line="444" column="73" selection-start-line="444" selection-start-column="73" selection-end-line="444" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2214#2222#0" expanded="true" />
-                <element signature="e#2287#2294#0" expanded="true" />
-                <element signature="e#2639#2656#0" expanded="true" />
+                <element signature="e#10175#11652#0" expanded="true" />
+                <element signature="e#11651#11652#0" expanded="true" />
+                <element signature="e#14484#14492#0" expanded="true" />
+                <element signature="e#17829#18488#0" expanded="true" />
+                <element signature="e#18487#18488#0" expanded="true" />
+                <element signature="e#18696#19349#0" expanded="true" />
+                <element signature="e#19348#19349#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Device.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/struct/Device.java">
+      <file leaf-file-name="VideoTransferThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/VideoTransferThread.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.483333">
-              <caret line="326" column="45" selection-start-line="326" selection-start-column="45" selection-end-line="326" selection-end-column="45" />
+              <caret line="108" column="5" selection-start-line="17" selection-start-column="4" selection-end-line="108" selection-end-column="5" />
               <folding>
-                <element signature="e#956#975#0" expanded="true" />
-                <element signature="e#4127#4142#0" expanded="true" />
-                <element signature="e#4575#4589#0" expanded="true" />
-                <element signature="e#5029#5055#0" expanded="true" />
-                <element signature="e#5497#5525#0" expanded="true" />
-                <element signature="e#8305#8325#0" expanded="true" />
-                <element signature="e#8763#8790#0" expanded="true" />
-                <element signature="e#9232#9263#0" expanded="true" />
-                <element signature="e#12442#12462#0" expanded="true" />
-                <element signature="e#12900#12927#0" expanded="true" />
-                <element signature="e#13376#13407#0" expanded="true" />
-                <element signature="e#13852#13879#0" expanded="true" />
-                <element signature="e#15940#15960#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5517242">
-              <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1234,12 +1161,10 @@
         <option value="$PROJECT_DIR$/res/layout/playback_list_device_item.xml" />
         <option value="$PROJECT_DIR$/res/layout/playback_list_item.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/njupt/middleware/UdpOrder.java" />
         <option value="$PROJECT_DIR$/res/layout/activity_setupdevice.xml" />
         <option value="$PROJECT_DIR$/src/com/njupt/middleware/CommandBroadCaster.java" />
         <option value="$PROJECT_DIR$/src/com/njupt/middleware/SetUpThread.java" />
         <option value="$PROJECT_DIR$/src/com/njupt/middleware/SetUpDeviceActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/njupt/middleware/VideoTransferThread.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/com/njupt/middleware/AudioTransferThread.java" />
         <option value="$PROJECT_DIR$/src/com/njupt/middleware/media/Media.java" />
@@ -1255,16 +1180,19 @@
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/src/com/njupt/middleware/MainActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/njupt/middleware/ListActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/njupt/middleware/VideoTransferThread.java" />
+        <option value="$PROJECT_DIR$/src/com/njupt/middleware/UdpOrder.java" />
         <option value="$PROJECT_DIR$/src/com/njupt/middleware/DeviceManager.java" />
+        <option value="$PROJECT_DIR$/src/com/njupt/middleware/FileTransferThread.java" />
+        <option value="$PROJECT_DIR$/src/com/njupt/middleware/ListActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="x" value="64" />
+    <option name="y" value="-5" />
+    <option name="width" value="1303" />
+    <option name="height" value="774" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1291,6 +1219,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1377,12 +1309,30 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MiddleWare" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MiddleWare" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="middleware" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="media" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1693,7 +1643,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <frame x="64" y="-5" width="1303" height="774" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1702,7 +1652,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14862682" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.542811" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1711,7 +1661,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2849162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2386273" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1744,35 +1694,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/color/playback_text_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.114503816">
-          <caret line="3" column="68" selection-start-line="3" selection-start-column="68" selection-end-line="3" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/java/sdk/android-sdk-linux/sources/android-19/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33126935">
-          <caret line="889" column="0" selection-start-line="889" selection-start-column="0" selection-end-line="889" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/java/sdk/android-sdk-linux/sources/android-19/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="163" column="13" selection-start-line="163" selection-start-column="13" selection-end-line="163" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/playback_list_device_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6741573">
           <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/dimens.xml">
@@ -1795,13 +1724,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/playback_list_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.037807185">
           <caret line="1" column="73" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/wifi2.png">
@@ -1815,13 +1744,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/activity_list.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26086956">
           <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/java/sdk/android-sdk-linux/sources/android-19/android/net/wifi/WifiManager.java">
@@ -1854,20 +1783,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/activity_setupdevice.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16490486">
-          <caret line="158" column="35" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/UdpOrder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32833022">
-          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
-          <folding />
+        <state vertical-scroll-proportion="0.16490486">
+          <caret line="158" column="35" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1943,22 +1864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/VideoTransferThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/AudioTransferThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70628184">
-          <caret line="83" column="45" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/media/Song.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20373514">
@@ -1994,14 +1899,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/device_list_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37807184">
           <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/media/PrintFile.java">
@@ -2017,17 +1922,6 @@
         <state vertical-scroll-proportion="0.52461797">
           <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/media/Media.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27164686">
-          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
-          <folding>
-            <element signature="e#438#439#0" expanded="false" />
-            <element signature="e#468#469#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2050,28 +1944,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/comm_progress_dialog.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.56710774">
           <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2259887">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/DeviceScanListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25297114">
-          <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -2102,42 +1988,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/media/Media.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5517242">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.27164686">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.483333">
-          <caret line="326" column="45" selection-start-line="326" selection-start-column="45" selection-end-line="326" selection-end-column="45" />
-          <folding>
-            <element signature="e#956#975#0" expanded="true" />
-            <element signature="e#4127#4142#0" expanded="true" />
-            <element signature="e#4575#4589#0" expanded="true" />
-            <element signature="e#5029#5055#0" expanded="true" />
-            <element signature="e#5497#5525#0" expanded="true" />
-            <element signature="e#8305#8325#0" expanded="true" />
-            <element signature="e#8763#8790#0" expanded="true" />
-            <element signature="e#9232#9263#0" expanded="true" />
-            <element signature="e#12442#12462#0" expanded="true" />
-            <element signature="e#12900#12927#0" expanded="true" />
-            <element signature="e#13376#13407#0" expanded="true" />
-            <element signature="e#13852#13879#0" expanded="true" />
-            <element signature="e#15940#15960#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.033955857">
           <caret line="285" column="57" selection-start-line="285" selection-start-column="57" selection-end-line="285" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2145,10 +2006,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/DeviceScanListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5874363">
+          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.037807185">
+          <caret line="326" column="45" selection-start-line="326" selection-start-column="45" selection-end-line="326" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2843691">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/struct/Device.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.475382">
+          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/VideoTransferThread.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+          <caret line="108" column="5" selection-start-line="17" selection-start-column="4" selection-end-line="108" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/AudioTransferThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/AudioThirdPartyThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/java/sdk/android-sdk-linux/sources/android-19/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3327674">
+          <caret line="726" column="16" selection-start-line="726" selection-start-column="16" selection-end-line="726" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -2156,7 +2078,26 @@
     <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/DeviceManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+          <caret line="279" column="50" selection-start-line="279" selection-start-column="50" selection-end-line="279" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#904#925#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/UdpOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/FileTransferThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="57" selection-start-line="71" selection-start-column="57" selection-end-line="71" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2165,13 +2106,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/njupt/middleware/ListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3782696">
-          <caret line="117" column="31" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.7628459">
+          <caret line="444" column="73" selection-start-line="444" selection-start-column="73" selection-end-line="444" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2214#2222#0" expanded="true" />
-            <element signature="e#2287#2294#0" expanded="true" />
-            <element signature="e#2639#2656#0" expanded="true" />
+            <element signature="e#10175#11652#0" expanded="true" />
+            <element signature="e#11651#11652#0" expanded="true" />
+            <element signature="e#14484#14492#0" expanded="true" />
+            <element signature="e#17829#18488#0" expanded="true" />
+            <element signature="e#18487#18488#0" expanded="true" />
+            <element signature="e#18696#19349#0" expanded="true" />
+            <element signature="e#19348#19349#0" expanded="true" />
           </folding>
         </state>
       </provider>
