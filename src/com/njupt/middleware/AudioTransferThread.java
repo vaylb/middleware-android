@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.os.Message;
 import android.util.Log;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,11 +36,13 @@ public class AudioTransferThread implements Runnable {
 
     private FileInputStream stream_in = null;
     private int mTargetNum = -1;
+    private int mFileSize = -1;
 
     public AudioTransferThread(DeviceManager dm, File file,int targetNum) {
         this.mDeviceManager = dm;
         this.socketsMap = new ConcurrentHashMap<String, Socket>();
         mTargetNum = targetNum;
+        mFileSize = (int)file.length();
         try {
             this.stream_in = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
@@ -71,6 +74,12 @@ public class AudioTransferThread implements Runnable {
 					}while (socketsMap.size() < mTargetNum);
 					Log.d(TAG, "vaylb->Tcp listen, total audio device: "+ mTargetNum);
 					hasConnect = true;
+                    DataOutputStream outputStream;
+                    for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
+                        outputStream = new DataOutputStream(e.getValue().getOutputStream());
+                        outputStream.writeInt(mFileSize);
+                        outputStream.flush();
+                    }
 				} else { 
 					DataOutputStream outputStream;
 					if((read_tmp = stream_in.read(data)) > 0){
@@ -80,18 +89,12 @@ public class AudioTransferThread implements Runnable {
 	                    	outputStream.flush();
 	            		}
                         count+=read_tmp;
-
-					} //else TcpFlag = false;
-                    else{
-                        for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
-                            outputStream = new DataOutputStream(e.getValue().getOutputStream());
-                            outputStream.writeInt(flash);
-                            outputStream.flush();
-                        }
-                    }
+                        Log.d(TAG, "vaylb->send data:"+ read_tmp);
+					} else TcpFlag = false;
 				}
 				Thread.sleep(20);
             }
+            count+=read_tmp;
         }catch (SocketTimeoutException e) {
             e.printStackTrace();
             Message message=new Message();
@@ -103,14 +106,16 @@ public class AudioTransferThread implements Runnable {
             e.printStackTrace();
         } finally {
             Log.d(TAG, "vaylb->Tcp thread end, send "+count+" byte");
-//            try {
-//            	for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet())
-//            		e.getValue().close();
-//            	if (serverSocket != null) serverSocket.close();
-//    		} catch (IOException e) {
-//    			// TODO Auto-generated catch block
-//    			e.printStackTrace();
-//    		}
+            try {
+            	for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet())
+            		e.getValue().close();
+            	if (serverSocket != null) {
+                    serverSocket.close();
+                    serverSocket = null;
+                }
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
             
         }
 

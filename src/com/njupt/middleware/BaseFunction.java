@@ -8,6 +8,7 @@ import org.apache.http.conn.util.InetAddressUtils;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.njupt.middleware.utils.CommProgressDialog;
 
@@ -78,6 +79,10 @@ public class BaseFunction {
         dialog.setMessage(message);
         dialog.show();
         return dialog;
+    }
+
+    public static void showToast(Context context, String msg){
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

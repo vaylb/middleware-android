@@ -3,6 +3,7 @@ package com.njupt.middleware;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -62,6 +63,30 @@ public class DeviceManager {
             }
         }
         return list;
+    }
+
+    public void setDeviceJobDone(String addr){
+        for(HashMap.Entry<Media,List<Device>> e:currentPlaybackMap.entrySet()){
+            List<Device> list = e.getValue();
+            for (int i = 0; i < list.size(); i++) {
+                if(list.get(i).address.getHostAddress().equals(addr)){
+                    list.remove(i);
+                }
+            }
+            if(list.size()<=0){
+                Message message = new Message();
+                if(e.getKey().getFileName().endsWith("pdf")){
+                    message.what = 6;
+                }else if(e.getKey().getFileName().endsWith("deb")){
+                    message.what = 7;
+                }else{
+                    message.what = 8;
+                }
+                message.obj = e.getKey().getFileName();
+                mHandler.sendMessage(message);
+                currentPlaybackMap.remove(e.getKey());
+            }
+        }
     }
     
     public void startDeviceSacnListener(){

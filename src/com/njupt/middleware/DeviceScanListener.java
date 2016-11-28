@@ -43,12 +43,19 @@ public class DeviceScanListener implements Runnable{
                 //mDeviceManager.hostExecutor.execute(new AckUdp(mDeviceManager,result, receive.getAddress(), receive.getPort()));
                 Log.d(TAG, "vaylb->DeviceScanListening receive device info: " + result);
 				JSONObject object = new JSONObject(result);
-				Device device = new Device(object.optString("name"), object.optInt("type"), receive.getAddress());
-				mDeviceManager.addDevice(device);
-				Message message = new Message();
-				message.what = 9;
-				message.obj = object;
-				mDeviceManager.mHandler.sendMessage(message);
+                if(object.has("stat")){
+                    if(object.getInt("stat")==0){
+                        mDeviceManager.setDeviceJobDone(receive.getAddress().getHostAddress());
+                    }
+                }else{
+                    Device device = new Device(object.optString("name"), object.optInt("type"), receive.getAddress());
+                    mDeviceManager.addDevice(device);
+                    Message message = new Message();
+                    message.what = 9;
+                    message.obj = object;
+                    mDeviceManager.mHandler.sendMessage(message);
+                }
+
             }
         } catch (IOException exception) {
             exception.printStackTrace();

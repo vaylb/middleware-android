@@ -81,13 +81,6 @@ public class FileTransferThread implements Runnable{
                             outputStream.flush();
                         }
                     }else TcpFlag = false;
-//                    else{
-//                        for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
-//                            outputStream = new DataOutputStream(e.getValue().getOutputStream());
-//                            outputStream.writeInt(flash);
-//                            outputStream.flush();
-//                        }
-//                    }
                 }
                 Thread.sleep(2);
             }
@@ -103,13 +96,14 @@ public class FileTransferThread implements Runnable{
         } finally {
             Log.d(TAG, "vaylb->Tcp thread end");
             try {
+                serverSocket.close();
+                serverSocket = null;
                 for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet())
                     e.getValue().close();
                 if (serverSocket != null) serverSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
     }

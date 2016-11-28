@@ -1223,8 +1223,27 @@
                     "startLine": 67,
                     "startColumn": 4,
                     "startOffset": 6678,
+                    "endColumn": 45,
+                    "endOffset": 6719
+                },
+                "from": {
+                    "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/strings.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1071,
+                        "endColumn": 45,
+                        "endOffset": 1112
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 68,
+                    "startColumn": 4,
+                    "startOffset": 6724,
                     "endColumn": 37,
-                    "endOffset": 6711
+                    "endOffset": 6757
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/strings.xml",
@@ -1239,11 +1258,11 @@
             },
             {
                 "to": {
-                    "startLine": 68,
+                    "startLine": 69,
                     "startColumn": 4,
-                    "startOffset": 6716,
+                    "startOffset": 6762,
                     "endColumn": 38,
-                    "endOffset": 6750
+                    "endOffset": 6796
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/strings.xml",
@@ -1258,11 +1277,11 @@
             },
             {
                 "to": {
-                    "startLine": 69,
+                    "startLine": 70,
                     "startColumn": 4,
-                    "startOffset": 6755,
+                    "startOffset": 6801,
                     "endColumn": 46,
-                    "endOffset": 6797
+                    "endOffset": 6843
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/strings.xml",
@@ -1277,11 +1296,11 @@
             },
             {
                 "to": {
-                    "startLine": 70,
+                    "startLine": 71,
                     "startColumn": 4,
-                    "startOffset": 6802,
+                    "startOffset": 6848,
                     "endColumn": 39,
-                    "endOffset": 6837
+                    "endOffset": 6883
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/strings.xml",
@@ -1296,11 +1315,11 @@
             },
             {
                 "to": {
-                    "startLine": 71,
+                    "startLine": 72,
                     "startColumn": 4,
-                    "startOffset": 6842,
+                    "startOffset": 6888,
                     "endColumn": 37,
-                    "endOffset": 6875
+                    "endOffset": 6921
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/strings.xml",
@@ -1315,11 +1334,11 @@
             },
             {
                 "to": {
-                    "startLine": 72,
+                    "startLine": 73,
                     "startColumn": 4,
-                    "startOffset": 6880,
+                    "startOffset": 6926,
                     "endColumn": 39,
-                    "endOffset": 6915
+                    "endOffset": 6961
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/strings.xml",
@@ -1334,12 +1353,12 @@
             },
             {
                 "to": {
-                    "startLine": 73,
+                    "startLine": 74,
                     "startColumn": 4,
-                    "startOffset": 6920,
-                    "endLine": 79,
+                    "startOffset": 6966,
+                    "endLine": 80,
                     "endColumn": 12,
-                    "endOffset": 7177
+                    "endOffset": 7223
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/styles.xml",
@@ -1355,12 +1374,12 @@
             },
             {
                 "to": {
-                    "startLine": 80,
+                    "startLine": 81,
                     "startColumn": 4,
-                    "startOffset": 7182,
-                    "endLine": 82,
+                    "startOffset": 7228,
+                    "endLine": 83,
                     "endColumn": 12,
-                    "endOffset": 7337
+                    "endOffset": 7383
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/styles.xml",
@@ -1376,12 +1395,12 @@
             },
             {
                 "to": {
-                    "startLine": 83,
+                    "startLine": 84,
                     "startColumn": 4,
-                    "startOffset": 7342,
-                    "endLine": 86,
+                    "startOffset": 7388,
+                    "endLine": 87,
                     "endColumn": 12,
-                    "endOffset": 7552
+                    "endOffset": 7598
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/styles.xml",
@@ -1397,12 +1416,12 @@
             },
             {
                 "to": {
-                    "startLine": 87,
+                    "startLine": 88,
                     "startColumn": 4,
-                    "startOffset": 7557,
-                    "endLine": 93,
+                    "startOffset": 7603,
+                    "endLine": 94,
                     "endColumn": 12,
-                    "endOffset": 7981
+                    "endOffset": 8027
                 },
                 "from": {
                     "file": "/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/res/values/styles.xml",

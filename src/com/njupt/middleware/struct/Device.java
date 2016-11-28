@@ -1,9 +1,10 @@
 package com.njupt.middleware.struct;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 
 
-public class Device {
+public class Device implements Serializable{
 	public String name;
 	public int type;
 	public InetAddress address;

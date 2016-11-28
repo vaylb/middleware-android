@@ -1,8 +1,11 @@
 package com.njupt.middleware;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -59,7 +62,7 @@ public class ListActivity extends Activity {
 
     private static List<Media> transferList ; //中转list
     private Handler mHandler;
-    private boolean mShowDeviceList, mShowMediaList, mShowPlaybackList, mOnlineFlag;
+    private boolean mShowDeviceList, mShowMediaList, mShowPlaybackList, mOnlineFlag, mEnableClickEvent /*配置打印机时单击事件*/, mShowStartPlayBtnFlag;
     private ListView mDeviceListview, mMediaListview, mPlaybackListview;
     private TextView mTitle;
     private Button mStartplayBtn;
@@ -86,6 +89,15 @@ public class ListActivity extends Activity {
         mTitle = (TextView) findViewById(R.id.title);
         mDivideLine = (ImageView)findViewById(R.id.divide_line);
         mStartplayBtn = (Button) findViewById(R.id.start_play);
+
+        initFlagStat();
+        mTitle.setText(mTitleStr);
+
+        if(mCurrentMediaType == Media.TYPE_DRIVER){
+            mStartplayBtn.setText("上传驱动");
+        }else if(mCurrentMediaType == Media.TYPE_MEDIA_PRINTERFILE){
+            mStartplayBtn.setText("开始打印");
+        }
         mStartplayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,9 +117,7 @@ public class ListActivity extends Activity {
         mHandler = new ListViewHandler(this);
         mDeviceManager = new DeviceManager(getApplicationContext(), mHandler);
 
-        initFlagStat();
-        mTitle.setText(mTitleStr);
-        if (mShowDeviceList && mShowMediaList) {
+        if ((mShowDeviceList && mShowMediaList)|| mShowStartPlayBtnFlag) {
             mStartplayBtn.setVisibility(View.VISIBLE);
         } else {
             mStartplayBtn.setVisibility(View.GONE);
@@ -146,6 +156,46 @@ public class ListActivity extends Activity {
                         }
                     }
                 });
+            }else if(mEnableClickEvent){ //打印机配置
+                mDeviceListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
+//                        builder.setIcon(android.R.drawable.ic_dialog_alert);
+//                        builder.setTitle("手机准备自爆！");
+                        final String[] items = new String[]{
+                                "在线配置",
+                                "上传驱动"
+                        };
+                        builder.setItems(items, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d(TAG,"click on "+which);
+                                switch (which){
+                                    case 0:
+                                        Uri uri = Uri.parse("http://"+mDeviceData.get(position).address.getHostAddress()+":631");
+                                        Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                                        startActivity(it);
+                                        break;
+
+                                    case 1:
+                                        Intent intent = new Intent(ListActivity.this,ListActivity.class);
+                                        intent.putExtra("SHOW_DEVICE_LIST",false);
+                                        intent.putExtra("TITLE_STRING","选择驱动程序");
+                                        intent.putExtra("SHOW_MEDIA_LIST",true);
+                                        intent.putExtra("SHOW_MEDIA_TYPE",Media.TYPE_DRIVER);
+                                        intent.putExtra("SHOW_START_PLAY_BTN",true);
+                                        intent.putExtra("TARGET_DEVICE",mDeviceData.get(position));
+                                        startActivity(intent);
+                                        break;
+
+                                    default: break;
+                                }
+                            }
+                        });
+                        builder.show();
+                    }
+                });
             }
 
         } else {
@@ -170,6 +220,8 @@ public class ListActivity extends Activity {
 
             }else if (mCurrentMediaType == Media.TYPE_MEDIA_PRINTERFILE){
                 getPrintFiles("pdf");
+            }else if(mCurrentMediaType == Media.TYPE_DRIVER){
+                getPrintFiles("deb");
             }
 
             mMediaListAdapter = new MyListAdapter(this, TYPE_MEDIA);
@@ -325,10 +377,21 @@ public class ListActivity extends Activity {
         }
         mShowPlaybackList = intent.getBooleanExtra("SHOW_PLAYBACK_LIST", false);
         mTitleStr = intent.getStringExtra("TITLE_STRING");
+        if(mShowDeviceList){
+            mEnableClickEvent = intent.getBooleanExtra("ENABLE_CLICK_EVENT",false);
+        }
+        mShowStartPlayBtnFlag = intent.getBooleanExtra("SHOW_START_PLAY_BTN",false);
+        if(mShowStartPlayBtnFlag){
+           selectDevice((Device) intent.getSerializableExtra("TARGET_DEVICE"));
+        }
     }
 
     public void selectMediaPosition(int pos) {
         mCurrentSelectMediaPosition = pos;
+    }
+
+    public void selectDevice(Device dev){
+        mCurrentSelectDevice.put(0, dev);
     }
 
     public void selectDevice(int pos) {
@@ -350,7 +413,11 @@ public class ListActivity extends Activity {
         }
         mDeviceManager.currentPlaybackMap.put(media,playbackdevices);
         if(media.getMediaType() == Media.TYPE_MEDIA_PRINTERFILE){
-            Toast.makeText(getApplicationContext(), "即将打印\n" + mMediaData.get(position).getFileName(), Toast.LENGTH_SHORT).show();
+            if(media.getFileName().endsWith("pdf")){
+                Toast.makeText(getApplicationContext(), "即将打印\n" + mMediaData.get(position).getFileName(), Toast.LENGTH_SHORT).show();
+            }else if(media.getFileName().endsWith("deb")){
+                Toast.makeText(getApplicationContext(), "即将上传驱动并安装\n" + mMediaData.get(position).getFileName(), Toast.LENGTH_SHORT).show();
+            }
         }else{
             Toast.makeText(getApplicationContext(), "即将播放\n" + mMediaData.get(position).getFileName(), Toast.LENGTH_SHORT).show();
         }
@@ -430,7 +497,7 @@ public class ListActivity extends Activity {
                         }
                     }
                 }.start();
-            }else if(media.getMediaType() == Media.TYPE_MEDIA_PRINTERFILE){
+            }else if(media.getMediaType() == Media.TYPE_MEDIA_PRINTERFILE && media.getFileName().endsWith("pdf")){
                 mDeviceManager.startPrintFile(new File(((PrintFile)media).getFilePath()),devices.size());
                 new Thread() {
                     @Override
@@ -439,6 +506,24 @@ public class ListActivity extends Activity {
                         try {
                             sleep(500);
                             mDeviceManager.doDevicesPrepare(UdpOrder.DEVICE_PREPARE_FILE_PRINT, devices);
+
+                            Message message = new Message();
+                            message.what = 0;
+                            mDeviceManager.mHandler.sendMessage(message);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
+            } else if(media.getMediaType() == Media.TYPE_MEDIA_PRINTERFILE && media.getFileName().endsWith("deb")){
+                mDeviceManager.startPrintFile(new File(((PrintFile)media).getFilePath()),devices.size());
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            sleep(500);
+                            mDeviceManager.doDevicesPrepare(UdpOrder.DEVICE_PREPARE_DRIVER, devices);
 
                             Message message = new Message();
                             message.what = 0;
@@ -566,7 +651,11 @@ public class ListActivity extends Activity {
                 } else if (mMediaData.get(position).getMediaType() == Media.TYPE_MEDIA_VIDEO) {
                     holder.info.setText("视频");
                 } else  if(mMediaData.get(position).getMediaType() == Media.TYPE_MEDIA_PRINTERFILE){
-                    holder.info.setText("文件");
+                    if(mMediaData.get(position).getFileName().endsWith("deb")){
+                        holder.info.setText("驱动");
+                    }else{
+                        holder.info.setText("文件");
+                    }
                 }
             }
 

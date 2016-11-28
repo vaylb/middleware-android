@@ -11,6 +11,7 @@ public class UdpOrder {
     public static final String EXIT = "f";
     public static final String SETUP = "g";
     public static final String DEVICE_PREPARE_FILE_PRINT = "h"; //file
+    public static final String DEVICE_PREPARE_DRIVER = "i"; //driver
 
     public static HashMap<String, String> request=new HashMap<String, String>();
     static{
@@ -22,5 +23,6 @@ public class UdpOrder {
         request.put("f", "EXIT");
         request.put("g", "SETUP");
         request.put("h", "DEVICE_PREPARE_FILE_PRINT");
+        request.put("i", "DEVICE_PREPARE_DRIVER");
     }
 }

@@ -22,7 +22,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 	private static Context mContext;
 	private ImageButton scanBtn,setupBtn,deviceListBtn,playbackListBtn,playAudioBtn,playAudioOnlineBtn,playAudioThirdpartyBtn;
 	private ImageButton playVideoBtn,playVideoOnlineBtn,playVideoThirdpartyBtn,playScreenRecord;
-	private ImageButton printFileBtn;
+	private ImageButton printFileBtn,printSetupBtn;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,8 @@ public class MainActivity extends Activity implements OnTouchListener {
 		//print file
 		printFileBtn = (ImageButton)findViewById(R.id.print_file);
 		printFileBtn.setOnTouchListener(this);
+		printSetupBtn = (ImageButton)findViewById(R.id.print_setup);
+		printSetupBtn.setOnTouchListener(this);
 	}
 
 	@Override
@@ -279,14 +281,27 @@ public class MainActivity extends Activity implements OnTouchListener {
 			break;
 		case R.id.print_file:
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-				printFileBtn.setBackgroundResource(R.drawable.list_press);
+				printFileBtn.setBackgroundResource(R.drawable.fileprint_press);
 			} else if (event.getAction() == MotionEvent.ACTION_UP) {
-				printFileBtn.setBackgroundResource(R.drawable.list);
+				printFileBtn.setBackgroundResource(R.drawable.fileprint);
 				Intent intent = new Intent(MainActivity.this,ListActivity.class);
 				intent.putExtra("SHOW_DEVICE_LIST",true);
 				intent.putExtra("TITLE_STRING","选择文件和设备");
 				intent.putExtra("SHOW_MEDIA_LIST",true);
 				intent.putExtra("SHOW_MEDIA_TYPE",Media.TYPE_MEDIA_PRINTERFILE);
+				startActivity(intent);
+			}
+			break;
+
+		case R.id.print_setup:
+			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+				printSetupBtn.setBackgroundResource(R.drawable.fileprint_setup_press);
+			} else if (event.getAction() == MotionEvent.ACTION_UP) {
+				printSetupBtn.setBackgroundResource(R.drawable.fileprint_setup);
+				Intent intent = new Intent(MainActivity.this,ListActivity.class);
+				intent.putExtra("SHOW_DEVICE_LIST",true);
+				intent.putExtra("TITLE_STRING","选择设备");
+				intent.putExtra("ENABLE_CLICK_EVENT",true);
 				startActivity(intent);
 			}
 			break;
@@ -302,85 +317,14 @@ public class MainActivity extends Activity implements OnTouchListener {
 
         @Override
         public void handleMessage(Message msg) {
-//            MainActivity activity = mActivity.get();
-            if (msg.what == 0) {
-                Toast.makeText(mContext, "初始化完成",
-                        Toast.LENGTH_SHORT).show();
-            }
-            else if (msg.what == 1) {
-                Toast.makeText(mContext, "从机来电，设置静音",
-                        Toast.LENGTH_SHORT).show();
-            }
-            else if (msg.what == 2) {
-
-                Toast.makeText(mContext, "从机通话完成，音量恢复",
-                        Toast.LENGTH_SHORT).show();
-            }
-            else if (msg.what == 3) {
-//				if (activity.mhp.slaveAddressMap.size() == 0) {
-//					Toast.makeText(activity, "所有从机已退出,恢复单独播放",
-//							Toast.LENGTH_SHORT).show();
-//					activity.mhp.nativeStartPlay = false;
-//					//activity.mhp.getWriteUdp.stop();
-//					activity.mhp.native_setstartflag(0);
-//				}else{
-//					Toast.makeText(activity, msg.obj + "已退出",
-//							Toast.LENGTH_SHORT).show();
-//				}
-
-            } else if (msg.what == 5) {
-                Toast.makeText(mContext, "抱歉，主机出现错误",
-                        Toast.LENGTH_SHORT).show();
-            } else if (msg.what == 6) {
-                Toast.makeText(mContext, "从机出现错误，主机恢复单独播放",
-                        Toast.LENGTH_SHORT).show();
-//                activity.mhp.nativeStartPlay = false;
-//                activity.mhp.getWriteUdp.stop();
-//                activity.mhp.native_setstartflag(0);
-            } else if (msg.what == 7) {
-                Toast.makeText(mContext, "从机已经退出，恢复单独播放",
-                        Toast.LENGTH_SHORT).show();
-//                activity.mhp.nativeStartPlay = false;
-//                activity.mhp.getWriteUdp.stop();
-//                activity.mhp.native_setstartflag(0);
-            }
-            else if (msg.what == 8) {
-                Toast.makeText(mContext, "Wifi热点被关闭，恢复单独播放",
-                        Toast.LENGTH_SHORT).show();
-//                activity.mhp.nativeStartPlay = false;
-//                activity.mhp.getWriteUdp.stop();
-//                activity.mhp.native_setstartflag(0);
-            }
-            else if (msg.what == 4) {
-                Toast.makeText(mContext, "正在退出..",
-                        Toast.LENGTH_SHORT).show();
-                new Thread() {
-
-                    @Override
-                    public void run() {
-                        super.run();
-                        try {
-                            sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        Message msg = new Message();
-                        msg.what = 88;
-                        sendMessage(msg);
-                    }
-
-                }.start();
-            }
-            if (msg.what == 88) {
-//                activity.mhp.exitingState = true;
-//                activity.mhp.exit();
-                android.os.Process.killProcess(android.os.Process.myPid());
-                System.exit(0);
-
-            }
-            if (msg.what == 9) {
-            	Toast.makeText(mContext, "从机"+msg.obj+"已加入",
-                        Toast.LENGTH_SHORT).show();
+			if (msg.what == 6) {
+				BaseFunction.showToast(mContext, msg.obj+" 打印完成");
+			} else if (msg.what == 7) {
+				BaseFunction.showToast(mContext, msg.obj+" 安装完成");
+			} else if (msg.what == 8) {
+				BaseFunction.showToast(mContext, msg.obj+" 播放完成");
+            } else if (msg.what == 9) {
+				BaseFunction.showToast(mContext, "从机"+msg.obj+"已加入");
             }
         }
 

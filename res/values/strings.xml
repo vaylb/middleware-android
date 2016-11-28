@@ -23,6 +23,7 @@
     <string name="device_list_text">设备列表</string>
     <string name="playback_list_text">播放列表</string>
     <string name="print_file">打印文件</string>
+    <string name="print_setup">打印机配置</string>
 
 
 </resources>
