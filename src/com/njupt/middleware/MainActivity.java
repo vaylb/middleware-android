@@ -14,6 +14,9 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.njupt.middleware.media.Media;
+import com.njupt.middleware.struct.Device;
+
+import org.json.JSONObject;
 
 
 public class MainActivity extends Activity implements OnTouchListener {
@@ -324,7 +327,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 			} else if (msg.what == 8) {
 				BaseFunction.showToast(mContext, msg.obj+" 播放完成");
             } else if (msg.what == 9) {
-				BaseFunction.showToast(mContext, "从机"+msg.obj+"已加入");
+				BaseFunction.showToast(mContext, "中间件"+((JSONObject)msg.obj).optString("name")+" 已加入");
             }
         }
 

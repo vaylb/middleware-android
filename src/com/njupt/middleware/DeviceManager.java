@@ -55,7 +55,8 @@ public class DeviceManager {
         List<Device> list = new ArrayList<Device>();
         if(type == Device.TYPE_AUDIO || type == Device.TYPE_AUDIO || type == Device.TYPE_PRINTER){
             for(ConcurrentMap.Entry<String,Device> e: slaveDeviceMap.entrySet() ){
-                if(e.getValue().type == type)list.add(e.getValue());
+//                if(e.getValue().type == type)list.add(e.getValue());
+                if(deviceCheck(e.getValue().type, type))list.add(e.getValue());
             }
         }else{
             for(ConcurrentMap.Entry<String,Device> e: slaveDeviceMap.entrySet() ){
@@ -127,6 +128,12 @@ public class DeviceManager {
     public void executeRunnable(Runnable runnable){
         if (executor != null) executor.execute(runnable);
     }
+
+    public static boolean deviceCheck(int type, int target_offset){
+        if((type & (1<<target_offset)) > 0){
+            return true;
+        } else return false;
+    }
     
     /**
      * 添加新连接的设备
@@ -146,7 +153,8 @@ public class DeviceManager {
     public int getAudioDeviceNum(){
     	int count = 0;
     	for(ConcurrentMap.Entry<String,Device> e: slaveDeviceMap.entrySet() ){
-        	if(e.getValue().type == Device.TYPE_AUDIO)count++;
+//        	if(e.getValue().type == Device.TYPE_AUDIO)count++;
+            if(deviceCheck(e.getValue().type, Device.TYPE_AUDIO))count++;
 		}
     	return count;
     }
@@ -251,7 +259,8 @@ public class DeviceManager {
     public int getVideoDeviceNum(){
         int count = 0;
         for(ConcurrentMap.Entry<String,Device> e: slaveDeviceMap.entrySet() ){
-            if(e.getValue().type == Device.TYPE_VIDEO)count++;
+//            if(e.getValue().type == Device.TYPE_VIDEO)count++;
+            if(deviceCheck(e.getValue().type, Device.TYPE_VIDEO))count++;
         }
         return count;
     }

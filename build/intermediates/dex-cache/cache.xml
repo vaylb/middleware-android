@@ -1,2 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="3b35cd2dca03b8b4da9680795dacf07e9fa3455a">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ce09a4857dd4e84f20ca420e24b5262e32242b59/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-22.2.0_eaedd91c6c57b442afade55f11eef4cacf8c11c4/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="2e39110ad52d914ea7f089c83d1c75b1bfb01409">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_287a2967e8e7584706d9923788eeffbd91c366b2/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.2.0_3cc2c005b55c1a54e33c92201146aa309172420d/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.1.0_791782a86c23af5bd653fc6862d44eb380611337/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/libs/android-support-v4.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="ded9acc6a9792b8f1afc470f0c9cd36d178914cd">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/2/android-support-v4_21cb6c8fe6edadda1cd7d2d034576adafc7aa059/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/java/sdk/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.2.0_812dd1f225cd109b4a3802c22147061cf253ea03/classes.dex" />
+    </item>
+    <item
+        jar="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0 rc4"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.1.0_03a7e21cdaff13db7c79abe2967baa7f2fd52763/classes.dex" />
+    </item>
+
+</items>

@@ -4,34 +4,29 @@
     api-level="22"
     density="xxhdpi"
     format="7"
-    timestamp="9201705448960" >
+    timestamp="2019266690240" >
 
     <task
         name="javac"
-        duration="340" />
+        duration="579" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="101" />
+        duration="217" />
     <task
         name="verifier"
         duration="22" />
 
     <artifact
-        location="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex"
-        type="DEX" />
+        location="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/outputs/apk/MiddleWare-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="8606440376520" >
+    <build timestamp="2019266690240" >
         <artifact
             location="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/outputs/apk/MiddleWare-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="9201705448960" >
-        <artifact
-            location="/home/vaylb/android-src/android5.1.1_r14/packages/apps/MiddleWare/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>

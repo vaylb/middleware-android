@@ -637,13 +637,20 @@ public class ListActivity extends Activity {
             }
             if (type == TYPE_DEVICE) {
                 holder.title.setText(mDeviceData.get(position).name);
-                if (mDeviceData.get(position).type == Device.TYPE_AUDIO) {
-                    holder.info.setText("音频设备");
-                } else if (mDeviceData.get(position).type == Device.TYPE_VIDEO) {
-                    holder.info.setText("视频设备");
-                }else if(mDeviceData.get(position).type == Device.TYPE_PRINTER){
-                    holder.info.setText("打印设备");
+                String typeinfo = "";
+                if (DeviceManager.deviceCheck(mDeviceData.get(position).type, Device.TYPE_AUDIO)) {
+//                    holder.info.setText("音频设备");
+                    typeinfo+="音频";
                 }
+                if (DeviceManager.deviceCheck(mDeviceData.get(position).type, Device.TYPE_VIDEO)) {
+//                    holder.info.setText("视频设备");
+                    typeinfo+="|视频";
+                }
+                if(DeviceManager.deviceCheck(mDeviceData.get(position).type, Device.TYPE_PRINTER)){
+//                    holder.info.setText("打印设备");
+                    typeinfo+="|打印";
+                }
+                holder.info.setText(typeinfo+" 设备");
             } else if (type == TYPE_MEDIA) {
                 holder.title.setText(mMediaData.get(position).getFileName());
                 if (mMediaData.get(position).getMediaType() == Media.TYPE_MEDIA_AUDIO) {
