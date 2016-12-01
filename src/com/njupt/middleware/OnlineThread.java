@@ -31,20 +31,23 @@ public class OnlineThread implements Runnable {
     private int mTargetNum = -1;
     private ServerSocket serverSocket = null;
     private ConcurrentHashMap<String, Socket> socketsMap = null;
+    private int mMediaSize = -1;
 
 
-    public OnlineThread(DeviceManager dm, String url, int port,final int targetNum) {
+    public OnlineThread(DeviceManager dm, String url, int port, int medieSize, final int targetNum) {
         this.mDeviceManager = dm;
         this.mDataUrl = url;
         this.mCurrentPort = port;
         this.socketsMap = new ConcurrentHashMap<String, Socket>();
         mTargetNum = targetNum;
+        mMediaSize = medieSize;
     }
 
     @Override
     public void run() {
     	int size = 4096;
     	byte data[] = new byte[size];
+        int count = 0;
         try {
             serverSocket = new ServerSocket(mCurrentPort);
             serverSocket.setReuseAddress(true);
@@ -60,35 +63,42 @@ public class OnlineThread implements Runnable {
 					}while (socketsMap.size() < mTargetNum);
 					Log.d(TAG, "vaylb->Tcp listen, total audio device: "+ mDeviceManager.getAudioDeviceNum());
 					hasConnect = true;
+                    for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
+                        outputStream = new DataOutputStream(e.getValue().getOutputStream());
+                        outputStream.writeInt(mMediaSize);
+                        outputStream.flush();
+                    }
+
                     URL url=new URL(mDataUrl);
                     mConn = (HttpURLConnection)url.openConnection();
                     mDataInputStream = mConn.getInputStream();
 				} else {
-//					if(!audio_params_send_flag){ //传递音频相关参数
-//						int channels= 2, frequency = 44100, perframebits = 16;
-//	                    for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
-//	                    	outputStream = new DataOutputStream(e.getValue().getOutputStream());
-//	                    	outputStream.write(BaseFunction.IntToByteArray(channels));
-//	                    	outputStream.write(BaseFunction.IntToByteArray(frequency));
-//	                    	outputStream.write(BaseFunction.IntToByteArray(perframebits));
-//	                    	outputStream.flush();
-//	            		}
-//	                    audio_params_send_flag = true;
-//					}
-
-                    {
-                        int i = size;
-                        int ret = 0;
-                        while(i > 0 && (ret = mDataInputStream.read(data,size - i,i)) > 0)
-                        {
-                            i -= ret;
+                    while(count < mMediaSize){
+                        int ret = mDataInputStream.read(data,0,size);
+                        if(ret > 0){
+                            for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
+                                outputStream = new DataOutputStream(e.getValue().getOutputStream());
+                                outputStream.write(data,0,ret);
+                                outputStream.flush();
+                            }
+                            count += ret;
                         }
                     }
-                    for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
-                        outputStream = new DataOutputStream(e.getValue().getOutputStream());
-                        outputStream.write(data,0,size);
-                        outputStream.flush();
-                    }
+                    Log.d(TAG, "media size:"+mMediaSize+", send "+count);
+                    TcpFlag = false;
+//                    {
+//                        int i = size;
+//                        int ret = 0;
+//                        while(i > 0 && (ret = mDataInputStream.read(data,size - i,i)) > 0)
+//                        {
+//                            i -= ret;
+//                        }
+//                    }
+//                    for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
+//                        outputStream = new DataOutputStream(e.getValue().getOutputStream());
+//                        outputStream.write(data,0,size);
+//                        outputStream.flush();
+//                    }
 				}
             }
         }catch (SocketTimeoutException e) {
@@ -102,13 +112,12 @@ public class OnlineThread implements Runnable {
             Log.e(TAG, "vaylb->tcp Exception");
             e.printStackTrace();
         } finally {
-            Log.e(TAG, "vaylb->Tcp thread end");
+            Log.d(TAG, "vaylb->Tcp thread end");
             try {
             	for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet())
             		e.getValue().close();
             	if (serverSocket != null) serverSocket.close();
     		} catch (IOException e) {
-    			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
             

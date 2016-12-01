@@ -1,11 +1,9 @@
 
 package com.njupt.middleware;
 
-import android.os.Environment;
 import android.os.Message;
 import android.util.Log;
 
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,10 +12,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.nio.ByteBuffer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -89,7 +85,7 @@ public class AudioTransferThread implements Runnable {
 	                    	outputStream.flush();
 	            		}
                         count+=read_tmp;
-                        Log.d(TAG, "vaylb->send data:"+ read_tmp);
+//                        Log.d(TAG, "vaylb->send data:"+ read_tmp);
 					} else TcpFlag = false;
 				}
 				Thread.sleep(20);

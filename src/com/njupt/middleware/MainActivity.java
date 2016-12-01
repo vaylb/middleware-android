@@ -327,7 +327,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 			} else if (msg.what == 8) {
 				BaseFunction.showToast(mContext, msg.obj+" 播放完成");
             } else if (msg.what == 9) {
-				BaseFunction.showToast(mContext, "中间件"+((JSONObject)msg.obj).optString("name")+" 已加入");
+				BaseFunction.showToast(mContext, "中间件 "+((JSONObject)msg.obj).optString("name")+" 已加入");
             }
         }
 

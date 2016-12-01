@@ -35,6 +35,7 @@ import com.njupt.middleware.utils.CommProgressDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -232,16 +233,9 @@ public class ListActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                     Log.d(TAG, mMediaData.get(position).toString());
-                    if (mCurrentSelectMediaPosition != -1) {
-                        View currentview = mMediaListview.getChildAt(mCurrentSelectMediaPosition);
-                        currentview.setBackgroundResource(R.drawable.linearlayout_style);
-                        ((TextView) currentview.findViewById(R.id.name)).setTextColor(getResources().getColor(R.color.list_item_textview_unpress));
-                        ((TextView) currentview.findViewById(R.id.type)).setTextColor(getResources().getColor(R.color.list_item_textview_unpress));
-                    }
-                    view.setBackgroundResource(R.drawable.linearlayout_style_pressed);
-                    ((TextView) view.findViewById(R.id.name)).setTextColor(getResources().getColor(R.color.list_item_textview_press));
-                    ((TextView) view.findViewById(R.id.type)).setTextColor(getResources().getColor(R.color.list_item_textview_press));
                     selectMediaPosition(position);
+                    mMediaListAdapter.setSelect(position);
+                    mMediaListAdapter.notifyDataSetChanged();
                 }
             });
         } else {
@@ -323,13 +317,16 @@ public class ListActivity extends Activity {
             try{
                 if(type.equals("mp3")){
                     Song  song = new Song(0x02);
-                    list.get(i);
-                    song.setFileName(list.getString(i));
+                    JSONObject obj = (JSONObject) list.get(i);
+                    song.setFileName(obj.optString("name"));
+                    song.setMediaSize(obj.optInt("length"));
                     res.add(song);
                 }
                 if(type.equals("mp4")){
                     Movie  movie = new Movie(0x03);
-                    movie.setFileName(list.getString(i));
+                    JSONObject obj = (JSONObject) list.get(i);
+                    movie.setFileName(obj.optString("name"));
+                    movie.setMediaSize(obj.optInt("length"));
                     res.add(movie);
                 }
             }catch (JSONException e){
@@ -424,7 +421,7 @@ public class ListActivity extends Activity {
 
         if(mOnlineFlag){
             if(media.getMediaType() == Media.TYPE_MEDIA_AUDIO){
-                mDeviceManager.startAudioOnlinePlayBack(mMediaData.get(position).getFileName(),devices.size());
+                mDeviceManager.startAudioOnlinePlayBack(mMediaData.get(position).getFileName(),mMediaData.get(position).getMediaSize(),devices.size());
                 new Thread() {
                     @Override
                     public void run() {
@@ -442,7 +439,7 @@ public class ListActivity extends Activity {
                     }
                 }.start();
             } else if(media.getMediaType() == Media.TYPE_MEDIA_VIDEO){
-                mDeviceManager.startVideoOnlinePlayBack(mMediaData.get(position).getFileName(),devices.size());
+                mDeviceManager.startVideoOnlinePlayBack(mMediaData.get(position).getFileName(),mMediaData.get(position).getMediaSize(),devices.size());
                 new Thread() {
                     @Override
                     public void run() {
@@ -589,6 +586,7 @@ public class ListActivity extends Activity {
 
         private LayoutInflater mInflater;
         private int type;
+        private int currentSelect = -1;
 
 
         public MyListAdapter(Context context, int type) {
@@ -601,6 +599,10 @@ public class ListActivity extends Activity {
                 }
             }
             this.type = type;
+        }
+
+        public void setSelect(int select){
+            currentSelect = select;
         }
 
         @Override
@@ -666,6 +668,15 @@ public class ListActivity extends Activity {
                 }
             }
 
+            if(currentSelect != -1 && position == currentSelect){
+                convertView.setBackgroundResource(R.drawable.linearlayout_style_pressed);
+                holder.title.setTextColor(getResources().getColor(R.color.list_item_textview_press));
+                holder.info.setTextColor(getResources().getColor(R.color.list_item_textview_press));
+            }else{
+                convertView.setBackgroundResource(R.drawable.linearlayout_style);
+                holder.title.setTextColor(getResources().getColor(R.color.list_item_textview_unpress));
+                holder.info.setTextColor(getResources().getColor(R.color.list_item_textview_unpress));
+            }
 
             return convertView;
         }

@@ -231,8 +231,8 @@ public class DeviceManager {
     }
 
     //audio online
-    public void startAudioOnlinePlayBack(String songName,int num){
-        OnlineThread audioOnline = new OnlineThread(this,"http://182.254.211.166:8080/"+songName, OnlineThread.DEFAULT_AUDIO_PORT,num);
+    public void startAudioOnlinePlayBack(String songName,int mediasize,int num){
+        OnlineThread audioOnline = new OnlineThread(this,"http://182.254.211.166:8080/"+songName, OnlineThread.DEFAULT_AUDIO_PORT,mediasize,num);
         if(executor!=null)executor.execute(audioOnline);
     }
 
@@ -244,8 +244,8 @@ public class DeviceManager {
         if(executor!=null)executor.execute(videotransfer);
     }
 
-    public void startVideoOnlinePlayBack(String movieName,int num){
-        OnlineThread videoOnline = new OnlineThread(this,"http://182.254.211.166:8080/"+movieName, OnlineThread.DEFAULT_VIDEO_PORT,num);
+    public void startVideoOnlinePlayBack(String movieName,int mediasize,int num){
+        OnlineThread videoOnline = new OnlineThread(this,"http://182.254.211.166:8080/"+movieName, OnlineThread.DEFAULT_VIDEO_PORT,mediasize,num);
         if(executor!=null)executor.execute(videoOnline);
     }
 
