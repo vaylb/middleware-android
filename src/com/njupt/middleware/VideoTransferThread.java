@@ -27,11 +27,13 @@ public class VideoTransferThread implements Runnable {
     private ConcurrentHashMap<String, Socket> socketsMap = null;
     private FileInputStream stream_in = null;
     private int mTargetNum = -1;
+    private int mFileSize = -1;
 
     public VideoTransferThread(DeviceManager dm,File file,int targetNum) {
         this.mDeviceManager = dm;
         this.socketsMap = new ConcurrentHashMap<String, Socket>();
         mTargetNum = targetNum;
+        mFileSize = (int)file.length();
         try {
             //FaceTimeEveryDay.264
             this.stream_in = new FileInputStream(file);
@@ -44,9 +46,10 @@ public class VideoTransferThread implements Runnable {
 
     @Override
     public void run() {
-    	int size = 4096*2;
+    	int size = 4096*2,read_tmp = 0;
     	byte data[] = new byte[size];
         int flash = 0;
+        int count = 0;
     	
         try {
             if(serverSocket ==  null) {
@@ -65,25 +68,31 @@ public class VideoTransferThread implements Runnable {
 					}while (socketsMap.size() < mTargetNum);
 					Log.d(TAG, "vaylb->Tcp listen, total video device: "+ mTargetNum);
 					hasConnect = true;
+                    DataOutputStream outputStream;
+                    for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
+                        outputStream = new DataOutputStream(e.getValue().getOutputStream());
+                        outputStream.writeInt(mFileSize);
+                        outputStream.flush();
+                    }
 				} else {
 					DataOutputStream outputStream;
-
-					if(stream_in.read(data) > 0){
+					if((read_tmp = stream_in.read(data)) > 0){
 						for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
 	                    	outputStream = new DataOutputStream(e.getValue().getOutputStream());
 	                    	outputStream.write(data);
 	                    	outputStream.flush();
 	            		}
-					}//else TcpFlag = false;
-                    else{
-                        for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
-                            outputStream = new DataOutputStream(e.getValue().getOutputStream());
-                            outputStream.writeInt(flash);
-                            outputStream.flush();
-                        }
-                    }
+                        count+=read_tmp;
+					}else TcpFlag = false;
+//                    else{
+//                        for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
+//                            outputStream = new DataOutputStream(e.getValue().getOutputStream());
+//                            outputStream.writeInt(flash);
+//                            outputStream.flush();
+//                        }
+//                    }
 				}
-				Thread.sleep(2);
+				Thread.sleep(20);
             }
         }catch (SocketTimeoutException e) {
             e.printStackTrace();
@@ -95,11 +104,14 @@ public class VideoTransferThread implements Runnable {
             Log.d(TAG, "vaylb->tcp Exception");
             e.printStackTrace();
         } finally {
-            Log.d(TAG, "vaylb->Tcp thread end");
+            Log.d(TAG, "vaylb->Tcp thread end, send "+count);
             try {
             	for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet())
             		e.getValue().close();
-            	if (serverSocket != null) serverSocket.close();
+            	if (serverSocket != null){
+                    serverSocket.close();
+                    serverSocket = null;
+                }
     		} catch (IOException e) {
     			e.printStackTrace();
     		}

@@ -61,7 +61,7 @@ public class OnlineThread implements Runnable {
 						socket.setSoTimeout(500000);
 						socketsMap.put(socket.getInetAddress().getHostAddress(),socket);
 					}while (socketsMap.size() < mTargetNum);
-					Log.d(TAG, "vaylb->Tcp listen, total audio device: "+ mDeviceManager.getAudioDeviceNum());
+					Log.d(TAG, "vaylb->Tcp listen complete, total audio device: "+ mDeviceManager.getAudioDeviceNum()+" media size:"+mMediaSize);
 					hasConnect = true;
                     for(ConcurrentMap.Entry<String,Socket> e: socketsMap.entrySet() ){
                         outputStream = new DataOutputStream(e.getValue().getOutputStream());
