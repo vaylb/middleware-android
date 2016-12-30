@@ -56,11 +56,11 @@
     <string name="device_list_text">设备列表</string>
     <string name="hello_world">Hello world!</string>
     <string name="init">Init</string>
-    <string name="play_audio">音频播放</string>
+    <string name="play_audio">本地音频</string>
     <string name="play_audio_online">在线音频</string>
     <string name="play_audio_thirdparty">音频截取</string>
-    <string name="play_screenrecord">屏幕截取</string>
-    <string name="play_video">视频播放</string>
+    <string name="play_screenrecord">投影放映</string>
+    <string name="play_video">本地视频</string>
     <string name="play_video_online">在线视频</string>
     <string name="play_video_thirdparty">视频截取</string>
     <string name="playback_list_text">播放列表</string>
