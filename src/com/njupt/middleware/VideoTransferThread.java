@@ -46,7 +46,7 @@ public class VideoTransferThread implements Runnable {
 
     @Override
     public void run() {
-    	int size = 4096*2,read_tmp = 0;
+    	int size = 4096*8,read_tmp = 0;
     	byte data[] = new byte[size];
         int flash = 0;
         int count = 0;
@@ -92,7 +92,7 @@ public class VideoTransferThread implements Runnable {
 //                        }
 //                    }
 				}
-				Thread.sleep(20);
+//				Thread.sleep(20);
             }
         }catch (SocketTimeoutException e) {
             e.printStackTrace();
