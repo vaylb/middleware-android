@@ -285,7 +285,7 @@ public class DeviceManager {
 
 
     //parms
-    String screenSize = "720x1080";
+    String screenSize = "1080x1920";//"720x1080"
     String screenBitRate = "200M";
     String screenFormat = "frames"; //mp4,h264,frames
     String screenFilepath = "/sdcard/screenrecord.264";

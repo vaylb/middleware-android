@@ -11,8 +11,8 @@ namespace android{
 	static const uint32_t kMinBitRate = 100000;         // 0.1Mbps
 	static const uint32_t kMaxBitRate = 200 * 1000000;  // 200Mbps
 	static const uint32_t kMaxTimeLimitSec = 30;       // 1 minutes
-	static const uint32_t kFallbackWidth = 1280;        // 720p
-	static const uint32_t kFallbackHeight = 720;
+	static const uint32_t kFallbackWidth = 1080;        // 1080p
+	static const uint32_t kFallbackHeight = 1920;
 	static char* kMimeTypeAvc ="video/avc";
 
 	// Command-line parameters.
@@ -91,6 +91,7 @@ ScreenRecord::ScreenRecord(const char* size,const char* bitrate, bool rotate, co
 		ALOGE("vaylb-->Invalid size %ux%u, width and height may not be zero\n",gVideoWidth, gVideoHeight);
         return;
     }
+	ALOGE("vaylb-->gVideoWidth %d, gVideoHeight %d",gVideoWidth, gVideoHeight);
     gSizeSpecified = true;
     if (parseValueWithUnit(bitrate, &gBitRate) != NO_ERROR) {
 		ALOGE("vaylb-->Invalid bitrate '%s', set default\n",bitrate);
@@ -102,6 +103,7 @@ ScreenRecord::ScreenRecord(const char* size,const char* bitrate, bool rotate, co
     }
 
     if(rotate){
+		ALOGE("screenrecord gRotate true");
 		gRotate = true;
 	}
 	
@@ -262,27 +264,42 @@ status_t ScreenRecord::setDisplayProjection(const sp<IBinder>& dpy,
         videoWidth = gVideoHeight;
         videoHeight = gVideoWidth;
     }
+	
+	#if 0
     if (videoHeight > (uint32_t)(videoWidth * displayAspect)) {
         // limited by narrow width; reduce height
         outWidth = videoWidth;
-        outHeight = (uint32_t)(videoWidth * displayAspect);
+        //outHeight = (uint32_t)(videoWidth * displayAspect);
     } else {
         // limited by short height; restrict width
         outHeight = videoHeight;
-        outWidth = (uint32_t)(videoHeight / displayAspect);
+        //outWidth = (uint32_t)(videoHeight / displayAspect);
+        outWidth = videoWidth;
     }
-    uint32_t offX, offY;
+
+	uint32_t offX, offY;
     offX = (videoWidth - outWidth) / 2;
     offY = (videoHeight - outHeight) / 2;
     Rect displayRect(offX, offY, offX + outWidth, offY + outHeight);
+	#endif
+
+	if (!deviceRotated) {
+        outWidth = videoWidth;
+		outHeight = videoHeight;
+    } else {
+        outWidth = videoHeight;
+		outHeight = videoWidth;
+    }
+	
+    Rect displayRect(0, 0, outWidth, outHeight);
 
     if (gVerbose) {
         if (gRotate) {
             ALOGE("vaylb-->Rotated content area is %ux%u at offset x=%d y=%d\n",
-                    outHeight, outWidth, offY, offX);
+                    outHeight, outWidth, 0, 0);
         } else {
             ALOGE("vaylb-->Content area is %ux%u at offset x=%d y=%d\n",
-                    outWidth, outHeight, offX, offY);
+                    outWidth, outHeight, 0, 0);
         }
     }
 
