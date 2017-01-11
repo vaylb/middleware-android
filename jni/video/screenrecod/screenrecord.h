@@ -43,6 +43,15 @@
 #include "Overlay.h"
 #include "FrameOutput.h"
 
+//for databuffer
+#include "DataBuffer.h"
+#include <utils/threads.h>
+#include <utils/Debug.h>
+#include <utils/Thread.h>
+#include <pthread.h>
+
+
+
 namespace android{
 
 class ScreenRecord:public RefBase{
@@ -64,9 +73,40 @@ public:
 		bool isDeviceRotated(int orientation);
 		void setSlaveNum(int num);
 		void stopRecord();
+		void 		start_threads();
+		void 		stop_threads();
+		void		signalDataTransmitor();
+		void		sleep(long time);
+
+		DataBuffer*					mSendBuffer;
+		void*						mSendAddr; //sort the data which are going to send
+		int							sendcount;
+		void*						mCompressAddr;
+		uint8_t 					orientation;
+
 		
 protected:
 	virtual ~ScreenRecord();
+
+public:
+	class VideoTransmitor : public Thread {
+
+	public:
+			VideoTransmitor(ScreenRecord* host);
+    		virtual ~VideoTransmitor();
+		    virtual     bool        threadLoop();
+			bool		sendData(unsigned char * addr,int size);
+			void        threadLoop_exit();
+			void        threadLoop_run();
+			void		sleep(long time);
+			int compressRGBToJPEG(uint8_t* inbuf, uint8_t* outbuf, int width, int height);
+
+	private:
+		sp<ScreenRecord>		mScreenRecord;
+	};  // class VideoTransmitor
+
+private:
+	sp<VideoTransmitor>		mVideoTransmitor;
 	
 };
 

@@ -6,6 +6,12 @@
 
 #include "screenrecord.h"
 
+extern "C" {
+	#include "jpeglib.h" 
+}
+#define COMPRESS_QUALITY 80
+
+
 namespace android{
 
 	static const uint32_t kMinBitRate = 100000;         // 0.1Mbps
@@ -39,6 +45,9 @@ namespace android{
 	static		int 						mServerAddrLen;
 	static		struct sockaddr_in 			mServerAddress;
 
+	static		Mutex						mTransmitLock;
+	static		Condition					mDataTransmit;
+
 int socket_write(int fd,unsigned char *buffer,int length) 
 { 
 	int bytes_left; 
@@ -61,13 +70,79 @@ int socket_write(int fd,unsigned char *buffer,int length)
 	return 0; 
 } 
 
+//----------------------------------------------------------
+//JPEG compress
+
+/* The following declarations and 5 functions are jpeg related  functions */  
+typedef struct {  
+    struct jpeg_destination_mgr pub;  
+    JOCTET *buf;  
+    size_t bufsize;  
+    size_t jpegsize;  
+} mem_destination_mgr;  
+    
+typedef mem_destination_mgr *mem_dest_ptr;  
+    
+    
+void init_destination(j_compress_ptr cinfo)  
+{  
+    mem_dest_ptr dest = (mem_dest_ptr) cinfo->dest;  
+    dest->pub.next_output_byte = dest->buf;  
+    dest->pub.free_in_buffer = dest->bufsize;  
+    dest->jpegsize = 0;  
+}  
+    
+boolean empty_output_buffer(j_compress_ptr cinfo)  
+{  
+    mem_dest_ptr dest = (mem_dest_ptr) cinfo->dest;  
+    dest->pub.next_output_byte = dest->buf;  
+    dest->pub.free_in_buffer = dest->bufsize;  
+    
+    return FALSE;  
+}  
+    
+void term_destination(j_compress_ptr cinfo)  
+{  
+    mem_dest_ptr dest = (mem_dest_ptr) cinfo->dest;  
+    dest->jpegsize = dest->bufsize - dest->pub.free_in_buffer;  
+}  
+    
+static void jpeg_mem_dest(j_compress_ptr cinfo, JOCTET* buf, size_t bufsize)  
+{  
+    mem_dest_ptr dest;  
+    
+    if (cinfo->dest == NULL) {  
+        cinfo->dest = (struct jpeg_destination_mgr *)  
+            (*cinfo->mem->alloc_small)((j_common_ptr)cinfo, JPOOL_PERMANENT,  
+            sizeof(mem_destination_mgr));  
+    }  
+    
+    dest = (mem_dest_ptr) cinfo->dest;  
+    
+    dest->pub.init_destination    = init_destination;  
+    dest->pub.empty_output_buffer = empty_output_buffer;  
+    dest->pub.term_destination    = term_destination;  
+    
+    dest->buf      = buf;  
+    dest->bufsize  = bufsize;  
+    dest->jpegsize = 0;  
+}  
+    
+static int jpeg_mem_size(j_compress_ptr cinfo)  
+{  
+    mem_dest_ptr dest = (mem_dest_ptr) cinfo->dest;  
+    return dest->jpegsize;  
+}
+//------------------------- JPEG compress end ---------------------------------
+
+
 
 /*
  * Parses args and kicks things off.
  */
 ScreenRecord::ScreenRecord(const char* size,const char* bitrate, bool rotate, const char* format, const char* filepath)
 {
-	ALOGW("ScreenRecord constructor");
+	ALOGE("vaylb-->ScreenRecord constructor");
 	gVerbose = true;
 	gRotate = false;
 	gWantInfoScreen = false;
@@ -80,6 +155,7 @@ ScreenRecord::ScreenRecord(const char* size,const char* bitrate, bool rotate, co
 	gVideoHeight = 0;
 	gBitRate = 4000000;
 	gTimeLimitSec = kMaxTimeLimitSec;
+	gStopRequested = false;
 
 	
     if (size != NULL && !parseWidthHeight(size, &gVideoWidth, &gVideoHeight)) {
@@ -137,11 +213,36 @@ ScreenRecord::ScreenRecord(const char* size,const char* bitrate, bool rotate, co
         close(fd);
     }
 
+	mSendAddr = malloc(gVideoWidth*gVideoHeight*3);
+	mCompressAddr = malloc(gVideoWidth*gVideoHeight*3);
+	mSendBuffer = new DataBuffer(gVideoWidth*gVideoHeight*9+sizeof(int)*3); //three buffer size
+
+	mVideoTransmitor = new VideoTransmitor(this);
+
     //status_t err = recordScreen(fileName);
 }
 
 
-ScreenRecord::~ScreenRecord(){}
+ScreenRecord::~ScreenRecord(){
+	ALOGE("vaylb-->ScreenRecord destructor");
+	if(mSendAddr != NULL){
+		free(mSendAddr);
+	}
+
+	if(mCompressAddr != NULL){
+		free(mCompressAddr);
+	}
+}
+
+void ScreenRecord::start_threads(){
+	if(mVideoTransmitor != NULL) mVideoTransmitor->threadLoop_run();
+}
+
+void ScreenRecord::stop_threads(){
+	if(mVideoTransmitor != NULL) mVideoTransmitor->threadLoop_exit();
+	signalDataTransmitor();
+}
+
 
 
 /*
@@ -729,110 +830,60 @@ status_t ScreenRecord::recordScreen(const char* fileName) {
         // TODO: figure out if we can eliminate this
         frameOutput->prepareToCopy();
 		
-		int imageSize = gVideoWidth*gVideoHeight*3;
+		int imageSize = gVideoWidth*gVideoHeight*4;
 		uint8_t* imageAddr = (uint8_t*)malloc(imageSize);
 		
-		uint8_t orientation = mainDpyInfo.orientation;
-		bool savejpg = false;
-		int counttemp = 0;
+		orientation = mainDpyInfo.orientation;	  
         while (!gStopRequested) {
 			#if 1
 			//vaylb rotation check
-			{ // scope
-                ATRACE_NAME("orientation");
-                // Check orientation, update if it has changed.
-                //
-                // Polling for changes is inefficient and wrong, but the
-                // useful stuff is hard to get at without a Dalvik VM.
-                err = SurfaceComposerClient::getDisplayInfo(mainDpy,
-                        &mainDpyInfo);
-                if (err != NO_ERROR) {
-                    ALOGW("vaylb-->getDisplayInfo(main) failed: %d", err);
-                } else if (orientation != mainDpyInfo.orientation) {
-                	orientation = mainDpyInfo.orientation;
-                    ALOGE("vaylb-->orientation changed, now %d", orientation);
-					bool rotated = isDeviceRotated(orientation);
-					if(frameOutput != NULL){
-						frameOutput.clear();
-						frameOutput = NULL;
-						frameOutput = new FrameOutput();
-					}
-			        err = frameOutput->createInputSurface(rotated?gVideoHeight:gVideoWidth, rotated?gVideoWidth:gVideoHeight, &bufferProducer);
-			        if (err != NO_ERROR) {
-			            return err;
-			        }
+            SurfaceComposerClient::getDisplayInfo(mainDpy,&mainDpyInfo);
+            if (orientation != mainDpyInfo.orientation) {
+            	orientation = mainDpyInfo.orientation;
+                ALOGE("vaylb-->orientation changed, now %d", orientation);
+				bool rotated = isDeviceRotated(orientation);
+				if(frameOutput != NULL){
+					frameOutput.clear();
+					frameOutput = NULL;
+					frameOutput = new FrameOutput();
+				}
+		        err = frameOutput->createInputSurface(rotated?gVideoHeight:gVideoWidth, rotated?gVideoWidth:gVideoHeight, &bufferProducer);
+		        if (err != NO_ERROR) {
+		            return err;
+		        }
 
-					err = prepareVirtualDisplay(mainDpyInfo, bufferProducer, &dpy);
-				    if (err != NO_ERROR) {
-				        return err;
-				    }
+				err = prepareVirtualDisplay(mainDpyInfo, bufferProducer, &dpy);
+			    if (err != NO_ERROR) {
+			        return err;
+			    }
 
-					frameOutput->prepareToCopy();
-					savejpg = true;
-                }
+				frameOutput->prepareToCopy();
+				
             }
 			#endif
 			//TODO: compress RGB to jpg
-			int compressSize = frameOutput->compressFrame(imageAddr,250000);
-			//ALOGE("vaylb-->get compressSize = %d",compressSize);
-			if(compressSize <= 0){
-				break;
-			}
+			int compressSize = frameOutput->compressFrame(imageAddr,2500);//250000
 
 			if(compressSize == 110){
 				continue;
 			}
+			ALOGE("vaylb-->get compressSize = %d",compressSize);
 
-			
-			if (savejpg && compressSize != 110) {
-				counttemp ++;
-				if(counttemp==30){
-					// Fill out the header.
-					FILE* fp = fopen("/sdcard/testpic12.jpg", "w");
-					
-					fwrite(imageAddr, 1, compressSize, fp);
-					fflush(fp);
-					fclose(fp);
-					savejpg = false;
-				}
+			int datasize = compressSize + sizeof(compressSize);
+			while(!gStopRequested && mSendBuffer->getWriteSpace() < datasize) {
+				ALOGE("vaylb-->waiting for DataBuffer can hold %d byte",datasize);
+				signalDataTransmitor();
+				sleep(1000000); //1ms
 			}
-
-			Vector<int>::iterator curr = mSlaveSockets.begin();
-			Vector<int>::iterator end = mSlaveSockets.end();
-			int send = htonl(compressSize+sizeof(int));
-			ALOGE("vaylb-->send Size = %d to %d devices",compressSize,mSlaveSockets.size());
-			while(curr!=end){
-				int res = write(*curr,(const void*)&send,sizeof(compressSize));
-				if(res == -1)
-				{
-					ALOGE("vaylb-->screenrecord write socket error %d, fd = %d",errno,*curr);
-					curr++;
-					continue;
-				}
-				socket_write(*curr,imageAddr,compressSize);
-				curr++;
-			}
-			long sleepNs = 8000000; //8ms
-			const struct timespec req = {0, sleepNs};
-	        nanosleep(&req, NULL);
 			
-            // Poll for frames, the same way we do for MediaCodec.  We do
-            // all of the work on the main thread.
-            //
-            // Ideally we'd sleep indefinitely and wake when the
-            // stop was requested, but this will do for now.  (It almost
-            // works because wait() wakes when a signal hits, but we
-            // need to handle the edge cases.)
-            /*
-	            bool rawFrames = gOutputFormat == FORMAT_RAW_FRAMES;
-	            err = frameOutput->copyFrame(rawFp, 250000, rawFrames);
-	            if (err == ETIMEDOUT) {
-	                err = NO_ERROR;
-	            } else if (err != NO_ERROR) {
-	                ALOGE("vaylb-->Got error %d from copyFrame()", err);
-	                break;
-	            }
-	            */
+			if(gStopRequested) {
+				break;
+			}
+			
+			mSendBuffer->Write((char*)&compressSize,sizeof(compressSize));
+			mSendBuffer->Write((char*)imageAddr,compressSize);
+			signalDataTransmitor();
+           
         }
 		free(imageAddr);
     } else {
@@ -862,6 +913,17 @@ status_t ScreenRecord::recordScreen(const char* fileName) {
         fclose(rawFp);
     }
     if (encoder != NULL) encoder->release();
+	
+	Vector<int>::iterator curr = mSlaveSockets.begin();
+	Vector<int>::iterator end = mSlaveSockets.end();
+	while(curr!=end){
+		close(*curr);
+		curr++;
+	}
+	mSlaveSockets.clear();
+	close(mServerSocketFd);
+	mServerSocketFd = NULL;
+	ALOGE("vaylb-->record end.");
 
     return err;
 }
@@ -965,293 +1027,151 @@ void ScreenRecord::setSlaveNum(int num){
 		mSlaveSockets.push_back(clientFd);
 	}while(mSlaveSockets.size() < mSlaveNum);
 	
-	//start_threads();
+	start_threads();
 	recordScreen("/sdcard/screenrecord.264");
 }
 
 void ScreenRecord::stopRecord(){
 	gStopRequested = true;
+	stop_threads();
+}
+
+void ScreenRecord::signalDataTransmitor(){
+	Mutex::Autolock _l(mTransmitLock);
+	mDataTransmit.signal();
+}
+
+void ScreenRecord::sleep(long sleepNs){
+	const struct timespec req = {0, sleepNs};
+	nanosleep(&req, NULL);
 }
 
 
 
-#if 0
 
-/*
- * Sends a broadcast to the media scanner to tell it about the new video.
- *
- * This is optional, but nice to have.
- */
-status_t ScreenRecord::notifyMediaScanner(const char* fileName) {
-    // need to do allocations before the fork()
-    String8 fileUrl("file://");
-    fileUrl.append(fileName);
-
-    const char* kCommand = "/system/bin/am";
-    const char* const argv[] = {
-            kCommand,
-            "broadcast",
-            "-a",
-            "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
-            "-d",
-            fileUrl.string(),
-            NULL
-    };
-    if (gVerbose) {
-        printf("Executing:");
-        for (int i = 0; argv[i] != NULL; i++) {
-            printf(" %s", argv[i]);
-        }
-        putchar('\n');
-    }
-
-    pid_t pid = fork();
-    if (pid < 0) {
-        int err = errno;
-        ALOGW("fork() failed: %s", strerror(err));
-        return -err;
-    } else if (pid > 0) {
-        // parent; wait for the child, mostly to make the verbose-mode output
-        // look right, but also to check for and log failures
-        int status;
-        pid_t actualPid = TEMP_FAILURE_RETRY(waitpid(pid, &status, 0));
-        if (actualPid != pid) {
-            ALOGW("waitpid(%d) returned %d (errno=%d)", pid, actualPid, errno);
-        } else if (status != 0) {
-            ALOGW("'am broadcast' exited with status=%d", status);
-        } else {
-            ALOGV("'am broadcast' exited successfully");
-        }
-    } else {
-        if (!gVerbose) {
-            // non-verbose, suppress 'am' output
-            ALOGV("closing stdout/stderr in child");
-            int fd = open("/dev/null", O_WRONLY);
-            if (fd >= 0) {
-                dup2(fd, STDOUT_FILENO);
-                dup2(fd, STDERR_FILENO);
-                close(fd);
-            }
-        }
-        execv(kCommand, const_cast<char* const*>(argv));
-        ALOGE("execv(%s) failed: %s\n", kCommand, strerror(errno));
-        exit(1);
-    }
-    return NO_ERROR;
-}
-
-
-/*
- * Dumps usage on stderr.
- */
-static void usage() {
-    fprintf(stderr,
-        "Usage: screenrecord [options] <filename>\n"
-        "\n"
-        "Android screenrecord v%d.%d.  Records the device's display to a .mp4 file.\n"
-        "\n"
-        "Options:\n"
-        "--size WIDTHxHEIGHT\n"
-        "    Set the video size, e.g. \"1280x720\".  Default is the device's main\n"
-        "    display resolution (if supported), 1280x720 if not.  For best results,\n"
-        "    use a size supported by the AVC encoder.\n"
-        "--bit-rate RATE\n"
-        "    Set the video bit rate, in bits per second.  Value may be specified as\n"
-        "    bits or megabits, e.g. '4000000' is equivalent to '4M'.  Default %dMbps.\n"
-        "--bugreport\n"
-        "    Add additional information, such as a timestamp overlay, that is helpful\n"
-        "    in videos captured to illustrate bugs.\n"
-        "--time-limit TIME\n"
-        "    Set the maximum recording time, in seconds.  Default / maximum is %d.\n"
-        "--verbose\n"
-        "    Display interesting information on stdout.\n"
-        "--help\n"
-        "    Show this message.\n"
-        "\n"
-        "Recording continues until Ctrl-C is hit or the time limit is reached.\n"
-        "\n",
-        kVersionMajor, kVersionMinor, gBitRate / 1000000, gTimeLimitSec
-        );
-}
-
-
-/*
- * Parses args and kicks things off.
- */
-int main(int argc, char* const argv[]) {
-    static const struct option longOptions[] = {
-        { "help",               no_argument,        NULL, 'h' },
-        { "verbose",            no_argument,        NULL, 'v' },
-        { "size",               required_argument,  NULL, 's' },
-        { "bit-rate",           required_argument,  NULL, 'b' },
-        { "time-limit",         required_argument,  NULL, 't' },
-        { "bugreport",          no_argument,        NULL, 'u' },
-        // "unofficial" options
-        { "show-device-info",   no_argument,        NULL, 'i' },
-        { "show-frame-time",    no_argument,        NULL, 'f' },
-        { "rotate",             no_argument,        NULL, 'r' },
-        { "output-format",      required_argument,  NULL, 'o' },
-        { NULL,                 0,                  NULL, 0 }
-    };
-
-    while (true) {
-        int optionIndex = 0;
-        int ic = getopt_long(argc, argv, "", longOptions, &optionIndex);
-        if (ic == -1) {
-            break;
-        }
-
-        switch (ic) {
-        case 'h':
-            usage();
-            return 0;
-        case 'v':
-            gVerbose = true;
-            break;
-        case 's':
-            if (!parseWidthHeight(optarg, &gVideoWidth, &gVideoHeight)) {
-                fprintf(stderr, "Invalid size '%s', must be width x height\n",
-                        optarg);
-                return 2;
-            }
-            if (gVideoWidth == 0 || gVideoHeight == 0) {
-                fprintf(stderr,
-                    "Invalid size %ux%u, width and height may not be zero\n",
-                    gVideoWidth, gVideoHeight);
-                return 2;
-            }
-            gSizeSpecified = true;
-            break;
-        case 'b':
-            if (parseValueWithUnit(optarg, &gBitRate) != NO_ERROR) {
-                return 2;
-            }
-            if (gBitRate < kMinBitRate || gBitRate > kMaxBitRate) {
-                fprintf(stderr,
-                        "Bit rate %dbps outside acceptable range [%d,%d]\n",
-                        gBitRate, kMinBitRate, kMaxBitRate);
-                return 2;
-            }
-            break;
-        case 't':
-            gTimeLimitSec = atoi(optarg);
-            if (gTimeLimitSec == 0 || gTimeLimitSec > kMaxTimeLimitSec) {
-                fprintf(stderr,
-                        "Time limit %ds outside acceptable range [1,%d]\n",
-                        gTimeLimitSec, kMaxTimeLimitSec);
-                return 2;
-            }
-            break;
-        case 'u':
-            gWantInfoScreen = true;
-            gWantFrameTime = true;
-            break;
-        case 'i':
-            gWantInfoScreen = true;
-            break;
-        case 'f':
-            gWantFrameTime = true;
-            break;
-        case 'r':
-            // experimental feature
-            gRotate = true;
-            break;
-        case 'o':
-            if (strcmp(optarg, "mp4") == 0) {
-                gOutputFormat = FORMAT_MP4;
-            } else if (strcmp(optarg, "h264") == 0) {
-                gOutputFormat = FORMAT_H264;
-            } else if (strcmp(optarg, "frames") == 0) {
-                gOutputFormat = FORMAT_FRAMES;
-            } else if (strcmp(optarg, "raw-frames") == 0) {
-                gOutputFormat = FORMAT_RAW_FRAMES;
-            } else {
-                fprintf(stderr, "Unknown format '%s'\n", optarg);
-                return 2;
-            }
-            break;
-        default:
-            if (ic != '?') {
-                fprintf(stderr, "getopt_long returned unexpected value 0x%x\n", ic);
-            }
-            return 2;
-        }
-    }
-
-    if (optind != argc - 1) {
-        fprintf(stderr, "Must specify output file (see --help).\n");
-        return 2;
-    }
-
-    const char* fileName = argv[optind];
-    if (gOutputFormat == FORMAT_MP4) {
-        // MediaMuxer tries to create the file in the constructor, but we don't
-        // learn about the failure until muxer.start(), which returns a generic
-        // error code without logging anything.  We attempt to create the file
-        // now for better diagnostics.
-        int fd = open(fileName, O_CREAT | O_RDWR, 0644);
-        if (fd < 0) {
-            fprintf(stderr, "Unable to open '%s': %s\n", fileName, strerror(errno));
-            return 1;
-        }
-        close(fd);
-    }
-
-    status_t err = recordScreen(fileName);
-    if (err == NO_ERROR) {
-        // Try to notify the media scanner.  Not fatal if this fails.
-        notifyMediaScanner(fileName);
-    }
-    ALOGD(err == NO_ERROR ? "success" : "failed");
-    return (int) err;
-}
-
-/*
- * Catch keyboard interrupt signals.  On receipt, the "stop requested"
- * flag is raised, and the original handler is restored (so that, if
- * we get stuck finishing, a second Ctrl-C will kill the process).
- */
- 
-static void signalCatcher(int signum)
+//------------------------------------------------------------------------
+//                                            VideoTransmitor
+//------------------------------------------------------------------------
+ScreenRecord::VideoTransmitor::VideoTransmitor(ScreenRecord * sr)
+	:Thread(false /*canCallJava*/),
+	mScreenRecord(sr)
 {
-    gStopRequested = true;
-    switch (signum) {
-    case SIGINT:
-    case SIGHUP:
-        sigaction(SIGINT, &gOrigSigactionINT, NULL);
-        sigaction(SIGHUP, &gOrigSigactionHUP, NULL);
-        break;
-    default:
-        abort();
-        break;
-    }
+	ALOGE("vaylb-->VideoTransmitor construct.");
 }
 
-/*
- * Configures signal handlers.  The previous handlers are saved.
- *
- * If the command is run from an interactive adb shell, we get SIGINT
- * when Ctrl-C is hit.  If we're run from the host, the local adb process
- * gets the signal, and we get a SIGHUP when the terminal disconnects.
- */
-static status_t configureSignals() {
-    struct sigaction act;
-    memset(&act, 0, sizeof(act));
-    act.sa_handler = signalCatcher;
-    if (sigaction(SIGINT, &act, &gOrigSigactionINT) != 0) {
-        status_t err = -errno;
-        fprintf(stderr, "Unable to configure SIGINT handler: %s\n",
-                strerror(errno));
-        return err;
-    }
-    if (sigaction(SIGHUP, &act, &gOrigSigactionHUP) != 0) {
-        status_t err = -errno;
-        fprintf(stderr, "Unable to configure SIGHUP handler: %s\n",
-                strerror(errno));
-        return err;
-    }
-    return NO_ERROR;
+ScreenRecord::VideoTransmitor::~VideoTransmitor()
+{
+	ALOGE("vaylb-->VideoTransmitor destruct.");
+	mScreenRecord.clear();
+	mScreenRecord = NULL;
 }
-#endif
+
+bool ScreenRecord::VideoTransmitor::threadLoop()
+{
+	ALOGE("vaylb-->VideoTransmitor::threadLoop.");
+	while (!exitPending())
+    {
+    	//long time2 = get_time_stamp();
+    	Mutex::Autolock _l(mTransmitLock);
+		mDataTransmit.wait(mTransmitLock);
+		if(exitPending()) break;
+		
+		int datasize = 0;
+		while(mScreenRecord->mSendBuffer->getReadSpace() > sizeof(datasize)){
+			mScreenRecord->mSendBuffer->Read((char*)&datasize,sizeof(datasize));
+			if(datasize>0){
+				while(mScreenRecord->mSendBuffer->getReadSpace() < datasize){
+					ALOGE("vaylb-->VideoTransmitor waiting for DataBuffer can read %d byte",datasize);
+					sleep(1000000); //1ms
+				}
+				if(exitPending()) {
+					ALOGE("vaylb-->VideoTransmitor:: threadLoop end.");
+					return false;
+				};
+				mScreenRecord->mSendBuffer->Read((char*)mScreenRecord->mCompressAddr,datasize);
+				bool flip = mScreenRecord->isDeviceRotated(mScreenRecord->orientation);
+				int sendsize = compressRGBToJPEG((uint8_t*)mScreenRecord->mCompressAddr, (uint8_t*)mScreenRecord->mSendAddr, flip?gVideoHeight:gVideoWidth, flip?gVideoWidth:gVideoHeight);
+				if(!sendData((unsigned char *)mScreenRecord->mSendAddr,sendsize)){
+					ALOGE("vaylb-->VideoTransmitor send data error!");
+					//mVideoShare->callbackfun(5);
+				}
+			}else{
+				ALOGE("get frame size error");
+			}
+		}
+    }
+
+	ALOGE("vaylb-->VideoTransmitor:: threadLoop end.");
+    return false;
+}
+
+bool ScreenRecord::VideoTransmitor::sendData(unsigned char * addr,int size){
+	//ALOGE("vaylb-->VideoTransmitor send data size = %d,total size = %d",size,size+sizeof(int));
+	Vector<int>::iterator curr = mSlaveSockets.begin();
+	Vector<int>::iterator end = mSlaveSockets.end();
+	int send = htonl(size+sizeof(int));
+	while(curr!=end){
+		int res = write(*curr,(const void*)&send,sizeof(size));
+		if(res == -1)
+		{
+			ALOGE("vaylb-->VideoShare write socket error %d, fd = %d",errno,mServerSocketFd);
+			return false;
+		}
+		socket_write(*curr,addr,size);
+		curr++;
+	}
+	return true;
+}
+
+
+ int ScreenRecord::VideoTransmitor::compressRGBToJPEG(uint8_t* inbuf, uint8_t* outbuf, int width, int height){
+	struct jpeg_compress_struct cinfo;
+	struct jpeg_error_mgr jerr;
+
+	cinfo.err = jpeg_std_error( &jerr );
+	jpeg_create_compress(&cinfo);
+	//jpeg_stdio_dest(&cinfo, outfile);
+
+	/* Setting the parameters of the output file here */
+	cinfo.image_width = width;//width;
+	cinfo.image_height = height;//width;
+	cinfo.input_components = 3;
+	cinfo.in_color_space = JCS_RGB;
+
+	jpeg_set_defaults( &cinfo );
+	size_t mem_size = width*height*3;
+	jpeg_mem_dest(&cinfo, outbuf, mem_size);
+	/* Now do the compression .. */
+	jpeg_start_compress( &cinfo, TRUE );
+
+	JSAMPROW buffer;
+	//ALOGE("vaylb-->compressRGBAToJPEG width = %d, height = %d", width, height);
+	
+	while (cinfo.next_scanline < cinfo.image_height) {
+        JSAMPLE *row = inbuf + 3 * cinfo.image_width * cinfo.next_scanline;
+        jpeg_write_scanlines(&cinfo, &row, 1);
+    }
+	jpeg_finish_compress( &cinfo );
+	int jpeg_image_size = jpeg_mem_size(&cinfo);
+	jpeg_destroy_compress( &cinfo );
+	return jpeg_image_size;
+
+}
+
+void ScreenRecord::VideoTransmitor::threadLoop_run(){
+	run("SRVideoTransmitor", PRIORITY_URGENT_DISPLAY);
+}
+
+void ScreenRecord::VideoTransmitor::threadLoop_exit(){
+	ALOGE("vaylb-->VideoTransmitor exit");
+	this->requestExit();
+	//this->requestExitAndWait();
+}
+
+void ScreenRecord::VideoTransmitor::sleep(long sleepNs){
+	const struct timespec req = {0, sleepNs};
+	nanosleep(&req, NULL);
+}
+
 }
 

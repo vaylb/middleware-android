@@ -17,6 +17,7 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
+	DataBuffer.cpp \
 	android_middleware_screenrecord.cpp \
 	screenrecord.cpp \
 	EglWindow.cpp \

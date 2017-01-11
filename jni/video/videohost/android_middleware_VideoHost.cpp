@@ -144,9 +144,10 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *jvm, void *reserved) {
 
 	sp<ProcessState> proc(ProcessState::self());  
 	sp<IServiceManager> sm = defaultServiceManager();   
-	VideoShare::instantiate(); 
-	//if(mVideoShare==NULL) mVideoShare = new VideoShare();
-	//mVideoShare->instantiate();
+
+	if(mVideoShare==NULL) mVideoShare = new VideoShare();
+	mVideoShare->setcallback(fun);
+	VideoShare::instantiate(mVideoShare);
 
 	android_coop_HostPlay_initVideoShareClient();
 	//ProcessState::self()->startThreadPool();

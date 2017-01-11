@@ -28,7 +28,7 @@ using namespace android;
 extern "C" {
 	#include "jpeglib.h" 
 }
-#define COMPRESS_QUALITY 100
+#define COMPRESS_QUALITY 80
 
 typedef long LONG;  
 typedef unsigned long DWORD;  
@@ -183,9 +183,6 @@ status_t FrameOutput::createInputSurface(int width, int height,
 	
     *pBufferProducer = producer;
 
-	savergb = true;
-	savecount = 0;
-
     ALOGD("vaylb-->FrameOutput::createInputSurface OK,width = %d, height = %d",width, height);
     return NO_ERROR;
 }
@@ -334,54 +331,21 @@ int FrameOutput::compressFrame(uint8_t* outbuf, long timeoutUsec){
 	// screen and the device capabilities, this can take a while.
 
 	GLenum glErr;
-	glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, mPixelBuf);
+	glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, outbuf);
 	if ((glErr = glGetError()) != GL_NO_ERROR) {
 		ALOGE("glReadPixels failed: %#x", glErr);
 		return UNKNOWN_ERROR;
 	}
 
-	reduceRgbaToRgb(mPixelBuf, width * height);
-	//size_t rgbDataLen = width * height * kOutBytesPerPixel;
-	if(width>height && savergb){
-		savecount++;
-		if(savecount == 30){
-			savebmp(mPixelBuf,"/sdcard/testpic12.bmp",width,height);
-			savergb = false;
-		}
-	}
+	reduceRgbaToRgb(outbuf, width * height);
+	return width * height * 3;
 
-	/*
-	bool rawFrames = false;
-	if (!rawFrames) {
-        // Fill out the header.
-        FILE* fp = fopen("/sdcard/testpic.bmp", "w");
-        
-		fwrite(mPixelBuf, 1, rgbDataLen, fp);
-    	fflush(fp);
-		fclose(fp);
-		rawFrames = true;
-    	}
-    	*/
-    
-
-	//fwrite(mPixelBuf, 1, rgbDataLen, fp);
-	//fflush(fp);
 	//return compressRGBToJPEG(outbuf, width, height);
-
-	return compressRGBToJPEG(outbuf, width, height);
 
 }
 int FrameOutput::compressRGBToJPEG(uint8_t* outbuf, int width, int height){
 	struct jpeg_compress_struct cinfo;
 	struct jpeg_error_mgr jerr;
-
-	/* this is a pointer to one row of image data 
-	FILE *outfile = fopen("/sdcard/testpic.jpg", "wb" );
-	if(outfile == NULL){
-		ALOGE("vaylb-->compressRGBAToJPEG open file error");
-		return -1;
-	}
-	*/
 
 	cinfo.err = jpeg_std_error( &jerr );
 	jpeg_create_compress(&cinfo);
@@ -409,23 +373,15 @@ int FrameOutput::compressRGBToJPEG(uint8_t* outbuf, int width, int height){
 	jpeg_finish_compress( &cinfo );
 	int jpeg_image_size = jpeg_mem_size(&cinfo);
 	jpeg_destroy_compress( &cinfo );
-	//fclose( outfile );
 	return jpeg_image_size;
 
 }
 
 
 int FrameOutput::compressRGBAToJPEG(uint8_t* outbuf, int width, int height){
+	//crash crash crash
 	struct jpeg_compress_struct cinfo;
 	struct jpeg_error_mgr jerr;
-
-	/* this is a pointer to one row of image data 
-	FILE *outfile = fopen("/sdcard/testpic.jpg", "wb" );
-	if(outfile == NULL){
-		ALOGE("vaylb-->compressRGBAToJPEG open file error");
-		return -1;
-	}
-	*/
 
 	cinfo.err = jpeg_std_error( &jerr );
 	jpeg_create_compress(&cinfo);
@@ -438,13 +394,13 @@ int FrameOutput::compressRGBAToJPEG(uint8_t* outbuf, int width, int height){
 	cinfo.in_color_space = JCS_RGBA_8888;
 
 	jpeg_set_defaults( &cinfo );
-	size_t mem_size = width*height*3;
+	size_t mem_size = width*height*4;
 	jpeg_mem_dest(&cinfo, outbuf, mem_size);
 	/* Now do the compression .. */
 	jpeg_start_compress( &cinfo, TRUE );
 
 	JSAMPROW buffer;
-	ALOGE("vaylb-->compressRGBAToJPEG width = %d, height = %d", width, height);
+	//ALOGE("vaylb-->compressRGBAToJPEG width = %d, height = %d", width, height);
 	
 	while (cinfo.next_scanline < cinfo.image_height) {
         JSAMPLE *row = mPixelBuf + 4 * cinfo.image_width * cinfo.next_scanline;

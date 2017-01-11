@@ -97,8 +97,6 @@ private:
 
     // Pixel data buffer.
     uint8_t* mPixelBuf;
-	bool savergb;
-	int savecount;
 };
 
 }; // namespace android

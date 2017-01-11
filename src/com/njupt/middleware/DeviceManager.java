@@ -301,6 +301,7 @@ public class DeviceManager {
     }
 
     public void setScreenRecordSlaveNum(){
+        Log.e(TAG, "vaylb->setScreenRecordSlaveNum");
         mScreenRecordStartFlag = true;
         native_screenrecord_setslavenum(getVideoDeviceNum());
     }

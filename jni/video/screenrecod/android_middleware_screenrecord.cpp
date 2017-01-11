@@ -47,6 +47,7 @@ void  android_coop_HostPlay_native_sr_start(JNIEnv * env, jobject obj, jstring f
 
 void  android_coop_HostPlay_native_sr_setslavenum(JNIEnv * env, jobject obj, jint num)
 {
+	ALOGE("vaylb-->JNI::setslavenum");
     if (mScreenRecord != NULL) {	
 		mScreenRecord->setSlaveNum(num);
     }
@@ -56,6 +57,7 @@ void  android_coop_HostPlay_native_sr_stop(JNIEnv * env, jobject obj)
 {
     if (mScreenRecord != NULL) {	
 		mScreenRecord->stopRecord();
+		mScreenRecord.clear();
     }
 }
 
@@ -85,4 +87,4 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *jvm, void *reserved) {
 	}
 	ALOGE("vaylb-->JNI: screenrecord jni_onload() success.");
 	return JNI_VERSION_1_6;
-}
+ }
