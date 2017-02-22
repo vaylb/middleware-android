@@ -63,7 +63,7 @@ public class ListActivity extends Activity {
 
     private static List<Media> transferList ; //中转list
     private Handler mHandler;
-    private boolean mShowDeviceList, mShowMediaList, mShowPlaybackList, mOnlineFlag, mEnableClickEvent /*配置打印机时单击事件*/, mShowStartPlayBtnFlag;
+    private boolean mShowDeviceList, mShowMediaList, mShowPlaybackList, mOnlineFlag, mEnableDeviceClickEvent /*配置打印机时单击事件*/,mEnablePlayBackClickEvent/*播放列表支持点击操作*/, mShowStartPlayBtnFlag;
     private ListView mDeviceListview, mMediaListview, mPlaybackListview;
     private TextView mTitle;
     private Button mStartplayBtn;
@@ -103,7 +103,7 @@ public class ListActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (mCurrentSelectMediaPosition == -1) {
-                    Toast.makeText(getApplication(), "请选择音乐", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "请选择媒体", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (mCurrentSelectDevice.size() == 0) {
@@ -157,7 +157,7 @@ public class ListActivity extends Activity {
                         }
                     }
                 });
-            }else if(mEnableClickEvent){ //打印机配置
+            }else if(mEnableDeviceClickEvent){ //打印机配置
                 mDeviceListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -373,9 +373,12 @@ public class ListActivity extends Activity {
             mCurrentMediaType = intent.getIntExtra("SHOW_MEDIA_TYPE",Media.TYPE_MEDIA_AUDIO);
         }
         mShowPlaybackList = intent.getBooleanExtra("SHOW_PLAYBACK_LIST", false);
+        if(mShowPlaybackList){
+            mEnablePlayBackClickEvent = intent.getBooleanExtra("ENABLE_PLAYBACK_CLICK_EVENT",false);
+        }
         mTitleStr = intent.getStringExtra("TITLE_STRING");
         if(mShowDeviceList){
-            mEnableClickEvent = intent.getBooleanExtra("ENABLE_CLICK_EVENT",false);
+            mEnableDeviceClickEvent = intent.getBooleanExtra("ENABLE_CLICK_EVENT",false);
         }
         mShowStartPlayBtnFlag = intent.getBooleanExtra("SHOW_START_PLAY_BTN",false);
         if(mShowStartPlayBtnFlag){
@@ -713,7 +716,7 @@ public class ListActivity extends Activity {
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
+        public View getView(final int i, View view, ViewGroup viewGroup) {
             ViewHolder viewHolder;
             if (view != null){
                 viewHolder = (ViewHolder)view.getTag();
@@ -731,6 +734,48 @@ public class ListActivity extends Activity {
             viewHolder.devices.setAdapter(adapter);
             //根据innerlistview的高度机损parentlistview item的高度
             setListViewHeightBasedOnChildren(viewHolder.devices);
+
+            viewHolder.media.setTag(dataMap.get(dataKey.get(i)));
+            viewHolder.media.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
+                    final String[] items = new String[]{
+                            "结束业务"
+                    };
+                    builder.setItems(items, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Log.d(TAG,"click on "+which);
+                            switch (which){
+                                case 0:
+                                    List<Device> devices = (List<Device>) v.getTag();
+                                    Map<Integer,Device> dev_cast = new HashMap<Integer, Device>();
+                                    int count = 0;
+                                    for (Device device : devices) {
+                                        Log.e("Playback","device:"+device.name);
+                                        dev_cast.put(++count,device);
+
+                                    }
+                                    Toast.makeText(context,"正在结束业务",Toast.LENGTH_SHORT).show();
+                                    mDeviceManager.doSingleCast(UdpOrder.EXIT, dev_cast);
+
+                                    dataMap.remove(dataKey.get(i));
+                                    dataKey.remove(i);
+
+                                    Message message = new Message();
+                                    message.what = 3;
+                                    mHandler.sendMessage(message);
+
+                                    break;
+
+                                default: break;
+                            }
+                        }
+                    });
+                    builder.show();
+                }
+            });
 
             return view;
         }
@@ -827,6 +872,8 @@ public class ListActivity extends Activity {
             else if (msg.what == 2) {
                 activity.mMediaData = (List<Media>) msg.obj;
                 activity.mMediaListAdapter.notifyDataSetChanged();
+            }else if (msg.what == 3) {
+                activity.mPlaybackAdapter.notifyDataSetChanged();
             }
         }
 

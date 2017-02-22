@@ -246,6 +246,12 @@ public class MainActivity extends Activity implements OnTouchListener {
 					}
 				}.start();
 
+				Toast.makeText(this,"截屏播放",Toast.LENGTH_SHORT).show();
+
+				if(mDeviceManager.mScreenRecordStartFlag){
+					break;
+				}
+
 				new Thread() {
 					@Override
 					public void run() {
@@ -253,9 +259,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 						mDeviceManager.setScreenRecordSlaveNum();
 					}
 				}.start();
-//				mDeviceManager.startScreenRecord();
-//				mDeviceManager.doDevicesPrepare(UdpOrder.DEVIDE_PREPARE_VIDEO_COMPRESSED);
-				Toast.makeText(this,"截屏播放",Toast.LENGTH_SHORT).show();
+
 			}
 			break;
 
@@ -279,6 +283,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 				Intent intent = new Intent(MainActivity.this,ListActivity.class);
 				intent.putExtra("SHOW_PLAYBACK_LIST",true);
 				intent.putExtra("TITLE_STRING","播放列表");
+				intent.putExtra("ENABLE_PLAYBACK_CLICK_EVENT",true);
 				startActivity(intent);
 			}
 			break;

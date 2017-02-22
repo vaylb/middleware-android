@@ -308,6 +308,7 @@ public class DeviceManager {
 
     public void stopScreenRecord(){
         mScreenRecordStartFlag = false;
+        mScreenRecordNativeLibLoadFlag = false;
         native_screenrecord_stop();
     }
 

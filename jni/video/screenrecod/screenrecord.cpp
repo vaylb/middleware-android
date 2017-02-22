@@ -867,7 +867,7 @@ status_t ScreenRecord::recordScreen(const char* fileName) {
 			if(compressSize == 110){
 				continue;
 			}
-			ALOGE("vaylb-->get compressSize = %d",compressSize);
+			//ALOGE("vaylb-->get compressSize = %d",compressSize);
 
 			int datasize = compressSize + sizeof(compressSize);
 			while(!gStopRequested && mSendBuffer->getWriteSpace() < datasize) {
@@ -995,14 +995,8 @@ void ScreenRecord::setSlaveNum(int num){
 	
 	mServerAddress.sin_family = AF_INET;
 	mServerAddress.sin_addr.s_addr = htonl(INADDR_ANY);
-	if(gOutputFormat == FORMAT_H264){
-		mServerAddress.sin_port = htons(40005);
-	}else if(gOutputFormat == FORMAT_FRAMES){
-		mServerAddress.sin_port = htons(40004);
-	}else{
-		ALOGE("vaylb-->ScreenRecord unkonwn format error");
-		return;
-	}
+	mServerAddress.sin_port = htons(40004);
+
 	mServerAddrLen = sizeof(mServerAddress);
 
 	status_t res = bind(mServerSocketFd,(struct sockaddr*)&mServerAddress,mServerAddrLen);
@@ -1100,6 +1094,17 @@ bool ScreenRecord::VideoTransmitor::threadLoop()
 			}
 		}
     }
+	
+	Vector<int>::iterator curr = mSlaveSockets.begin();
+	Vector<int>::iterator end = mSlaveSockets.end();
+	while(curr!=end){
+		close(*curr);
+		curr++;
+	}
+	mSlaveSockets.clear();
+	close(mServerSocketFd);
+	mServerSocketFd = NULL;
+	
 
 	ALOGE("vaylb-->VideoTransmitor:: threadLoop end.");
     return false;
