@@ -832,7 +832,7 @@ status_t ScreenRecord::recordScreen(const char* fileName) {
 		
 		int imageSize = gVideoWidth*gVideoHeight*4;
 		uint8_t* imageAddr = (uint8_t*)malloc(imageSize);
-		
+		int loopcount = 0;
 		orientation = mainDpyInfo.orientation;	  
         while (!gStopRequested) {
 			#if 1
@@ -862,11 +862,17 @@ status_t ScreenRecord::recordScreen(const char* fileName) {
             }
 			#endif
 			//TODO: compress RGB to jpg
-			int compressSize = frameOutput->compressFrame(imageAddr,2500);//250000
+			int compressSize = 0;
+			//if(loopcount == 50){
+			//	compressSize = frameOutput->captureFrame(imageAddr);
+			//} else 
+			compressSize = frameOutput->compressFrame(imageAddr,2000);//250000,2500
 
 			if(compressSize == 110){
+				//loopcount++;
 				continue;
 			}
+			loopcount = 0;
 			//ALOGE("vaylb-->get compressSize = %d",compressSize);
 
 			int datasize = compressSize + sizeof(compressSize);

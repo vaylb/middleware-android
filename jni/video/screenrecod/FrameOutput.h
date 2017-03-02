@@ -53,6 +53,7 @@ public:
     }
 
 	int compressFrame(uint8_t* outbuf, long timeoutUsec);
+	int captureFrame(uint8_t* outbuf);
 	int compressRGBToJPEG(uint8_t* outbuf, int width, int height);
 	int compressRGBAToJPEG(uint8_t* outbuf, int width, int height);
 	void savebmp(uint8_t* buffer,char * filename,int width, int height);

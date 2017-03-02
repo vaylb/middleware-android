@@ -343,6 +343,43 @@ int FrameOutput::compressFrame(uint8_t* outbuf, long timeoutUsec){
 	//return compressRGBToJPEG(outbuf, width, height);
 
 }
+
+int FrameOutput::captureFrame(uint8_t* outbuf){
+	Mutex::Autolock _l(mMutex);
+	ALOGE("vaylb-->captureFrame");
+	float texMatrix[16];
+	mGlConsumer->updateTexImage();
+	mGlConsumer->getTransformMatrix(texMatrix);
+
+	// The data is in an external texture, so we need to render it to the
+	// pbuffer to get access to RGB pixel data.  We also want to flip it
+	// upside-down for easy conversion to a bitmap.
+	int width = mEglWindow.getWidth();
+	int height = mEglWindow.getHeight();
+	status_t err = mExtTexProgram.blit(mExtTextureName, texMatrix, 0, 0,
+			width, height, true);
+	if (err != NO_ERROR) {
+		return err;
+	}
+
+	// GLES only guarantees that glReadPixels() will work with GL_RGBA, so we
+	// need to get 4 bytes/pixel and reduce it.  Depending on the size of the
+	// screen and the device capabilities, this can take a while.
+
+	GLenum glErr;
+	glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, outbuf);
+	if ((glErr = glGetError()) != GL_NO_ERROR) {
+		ALOGE("glReadPixels failed: %#x", glErr);
+		return UNKNOWN_ERROR;
+	}
+
+	reduceRgbaToRgb(outbuf, width * height);
+	return width * height * 3;
+
+	//return compressRGBToJPEG(outbuf, width, height);
+
+}
+
 int FrameOutput::compressRGBToJPEG(uint8_t* outbuf, int width, int height){
 	struct jpeg_compress_struct cinfo;
 	struct jpeg_error_mgr jerr;
@@ -433,6 +470,7 @@ void FrameOutput::reduceRgbaToRgb(uint8_t* buf, unsigned int pixelCount) {
 void FrameOutput::onFrameAvailable(const BufferItem& /* item */) {
     Mutex::Autolock _l(mMutex);
     mFrameAvailable = true;
+	//ALOGE("vaylb-->FrameOutput::onFrameAvailable");
     mEventCond.signal();
 }
   
