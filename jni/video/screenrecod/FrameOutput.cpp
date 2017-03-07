@@ -470,7 +470,7 @@ void FrameOutput::reduceRgbaToRgb(uint8_t* buf, unsigned int pixelCount) {
 void FrameOutput::onFrameAvailable(const BufferItem& /* item */) {
     Mutex::Autolock _l(mMutex);
     mFrameAvailable = true;
-	//ALOGE("vaylb-->FrameOutput::onFrameAvailable");
+	ALOGE("vaylb-->FrameOutput::onFrameAvailable");
     mEventCond.signal();
 }
   

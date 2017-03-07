@@ -866,14 +866,14 @@ status_t ScreenRecord::recordScreen(const char* fileName) {
 			//if(loopcount == 50){
 			//	compressSize = frameOutput->captureFrame(imageAddr);
 			//} else 
-			compressSize = frameOutput->compressFrame(imageAddr,2000);//250000,2500
+			compressSize = frameOutput->compressFrame(imageAddr,350000);//250000,2500
 
 			if(compressSize == 110){
 				//loopcount++;
 				continue;
 			}
 			loopcount = 0;
-			//ALOGE("vaylb-->get compressSize = %d",compressSize);
+			ALOGE("vaylb-->get compressSize = %d",compressSize);
 
 			int datasize = compressSize + sizeof(compressSize);
 			while(!gStopRequested && mSendBuffer->getWriteSpace() < datasize) {
@@ -1117,7 +1117,7 @@ bool ScreenRecord::VideoTransmitor::threadLoop()
 }
 
 bool ScreenRecord::VideoTransmitor::sendData(unsigned char * addr,int size){
-	//ALOGE("vaylb-->VideoTransmitor send data size = %d,total size = %d",size,size+sizeof(int));
+	ALOGE("vaylb-->VideoTransmitor send data size = %d,total size = %d",size,size+sizeof(int));
 	Vector<int>::iterator curr = mSlaveSockets.begin();
 	Vector<int>::iterator end = mSlaveSockets.end();
 	int send = htonl(size+sizeof(int));
