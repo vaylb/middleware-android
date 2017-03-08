@@ -333,7 +333,9 @@ public class MainActivity extends Activity implements OnTouchListener {
 				BaseFunction.showToast(mContext, msg.obj+" 播放完成");
             } else if (msg.what == 9) {
 				BaseFunction.showToast(mContext, "中间件 "+((JSONObject)msg.obj).optString("name")+" 已加入");
-            }
+            }else if(msg.what == 10){
+				BaseFunction.showToast(mContext, "请连接至局域网络！");
+			}
         }
 
     }

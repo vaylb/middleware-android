@@ -863,17 +863,12 @@ status_t ScreenRecord::recordScreen(const char* fileName) {
 			#endif
 			//TODO: compress RGB to jpg
 			int compressSize = 0;
-			//if(loopcount == 50){
-			//	compressSize = frameOutput->captureFrame(imageAddr);
-			//} else 
 			compressSize = frameOutput->compressFrame(imageAddr,350000);//250000,2500
 
 			if(compressSize == 110){
-				//loopcount++;
 				continue;
 			}
-			loopcount = 0;
-			ALOGE("vaylb-->get compressSize = %d",compressSize);
+			//ALOGE("vaylb-->get compressSize = %d",compressSize);
 
 			int datasize = compressSize + sizeof(compressSize);
 			while(!gStopRequested && mSendBuffer->getWriteSpace() < datasize) {
@@ -998,6 +993,7 @@ void ScreenRecord::setSlaveNum(int num){
 	int on = 1; 
 	setsockopt(mServerSocketFd, SOL_SOCKET, SO_KEEPALIVE, (void *)&on, sizeof(on));  
     setsockopt(mServerSocketFd, IPPROTO_TCP, TCP_NODELAY, (void *)&on, sizeof(on));  
+	setsockopt(mServerSocketFd, SOL_SOCKET, SO_REUSEADDR, (void *)&on, sizeof(on));  
 	
 	mServerAddress.sin_family = AF_INET;
 	mServerAddress.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -1021,7 +1017,7 @@ void ScreenRecord::setSlaveNum(int num){
 	do{
 		struct sockaddr_in 			clientAddress;
 		int addrLen = sizeof(clientAddress);
-		ALOGE("---------------waiting for device connect------------------");
+		ALOGE("vaylb---------------waiting for device connect, total: %d ------------------",num);
 		int clientFd = accept(mServerSocketFd,(struct sockaddr*)&clientAddress,&addrLen);
 		ALOGE("vaylb->new video connect,fd = %d, ip = %s",clientFd,inet_ntoa(clientAddress.sin_addr));
 		mSlaveSockets.push_back(clientFd);
@@ -1117,7 +1113,7 @@ bool ScreenRecord::VideoTransmitor::threadLoop()
 }
 
 bool ScreenRecord::VideoTransmitor::sendData(unsigned char * addr,int size){
-	ALOGE("vaylb-->VideoTransmitor send data size = %d,total size = %d",size,size+sizeof(int));
+	//ALOGE("vaylb-->VideoTransmitor send data size = %d,device count = %d",size,mSlaveSockets.size());
 	Vector<int>::iterator curr = mSlaveSockets.begin();
 	Vector<int>::iterator end = mSlaveSockets.end();
 	int send = htonl(size+sizeof(int));

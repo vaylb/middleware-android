@@ -97,6 +97,18 @@ public class DeviceManager {
     		mDeviceScanListenerFlag = false;
     	}
     }
+
+    boolean networkCheck(){
+        String locip = BaseFunction.getLocalHostIp();
+        if(locip.equals("")){
+            Log.d(TAG, "vaylb->未连接至局域网络");
+            Message msg = new Message();
+            msg.what = 10;
+            mHandler.sendMessage(msg);
+            return false;
+        }
+        return true;
+    }
     
     public void doDeviceSacn(){
         doBroadCast(UdpOrder.DEVIDE_SCANE);
@@ -111,16 +123,21 @@ public class DeviceManager {
     }
 
     public void doBroadCast(String order){
+        if(!networkCheck()) return;
+
         CommandBroadCaster castThread = new CommandBroadCaster(order);
         if (executor != null) executor.execute(castThread);
     }
 
     public void doRepeatBroadCast(String order,Integer repeat){
+        if(!networkCheck()) return;
+
         CommandBroadCaster castThread = new CommandBroadCaster(order, repeat);
         if (executor != null) executor.execute(castThread);
     }
 
     public void doSingleCast(String order, Map<Integer,Device> devices){
+        if(!networkCheck()) return;
         CommandBroadCaster castThread = new CommandBroadCaster(order,devices);
         if (executor != null) executor.execute(castThread);
     }
