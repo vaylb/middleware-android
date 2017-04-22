@@ -14,9 +14,15 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.njupt.middleware.media.Media;
+import com.njupt.middleware.media.ScreenFrames;
 import com.njupt.middleware.struct.Device;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
 
 public class MainActivity extends Activity implements OnTouchListener {
@@ -260,6 +266,14 @@ public class MainActivity extends Activity implements OnTouchListener {
 					}
 				}.start();
 
+				for(ConcurrentMap.Entry<Media,List<Device>> e: mDeviceManager.currentPlaybackMap.entrySet() ){
+                	if(e.getKey().getMediaType()==Media.TYPE_SCREEN_FRAMES){
+						break;
+					}
+				}
+				Media media = new ScreenFrames(Media.TYPE_SCREEN_FRAMES);
+				List<Device> playbackdevices = mDeviceManager.getDeviceList(Device.TYPE_VIDEO);
+				mDeviceManager.currentPlaybackMap.put(media,playbackdevices);
 			}
 			break;
 

@@ -8,6 +8,7 @@ public class Media {
     public static final int TYPE_MEDIA_VIDEO = 0x03;
     public static final int TYPE_MEDIA_PRINTERFILE = 0x04;
     public static final int TYPE_DRIVER = 0x05;
+    public static final int TYPE_SCREEN_FRAMES = 0x06;
     private int type;
     private int mediasize = -1;
     public Media(int type){
